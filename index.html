@@ -83,11 +83,6 @@ tr:hover { background: #f8f9ff; }
 .risk-y { background: #fef7e0; color: #b06000; }
 .risk-g { background: #e6f4ea; color: var(--green); }
 
-/* Charts row */
-.charts-row { display: flex; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
-.chart-box { flex: 1; min-width: 280px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--r); padding: 12px; box-shadow: var(--shadow); }
-.chart-box .ct { font-size: 11px; font-weight: 700; margin-bottom: 6px; color: var(--text-dim); }
-
 /* Section header bar */
 .sec-note { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 11px; color: var(--text-dim); }
 
@@ -151,13 +146,6 @@ tr:hover { background: #f8f9ff; }
   </div>
 </div>
 
-<!-- Charts -->
-<div class="charts-row">
-  <div class="chart-box">
-    <div class="ct">成长地图评分分布</div>
-    <canvas id="chartGrowth" height="180"></canvas>
-  </div>
-</div>
 
 <!-- ═══ SECTION 2: BY DEPT ═══ -->
 <h2>二、各指标 × 三级组织分布</h2>
@@ -390,34 +378,8 @@ tr:hover { background: #f8f9ff; }
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script>
-// ── Growth score distribution ──
-new Chart(document.getElementById('chartGrowth'), {
-  type: 'bar',
-  data: {
-    labels: ['1分','2分','3分','4分','5分','未答'],
-    datasets: [{
-      label: '人数',
-      data: [0, 1, 1, 1, 13, 2],
-      backgroundColor: ['#d93025','#d93025','#e37400','#f9ab00','#0d904f','#80868b'],
-      borderRadius: 4,
-      barThickness: 22
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: { legend: { display: false } },
-    scales: {
-      y: { beginAtZero: true, ticks: { stepSize: 2, font: { size: 10 } }, grid: { color: '#eee' } },
-      x: { ticks: { font: { size: 9 } }, grid: { display: false } }
-    }
-  }
-});
-
-// ── Dept filter ──
 function filterConcerns() {
   const val = document.getElementById('deptFilter').value;
   const cards = document.querySelectorAll('#concernsContainer .concern-card');
