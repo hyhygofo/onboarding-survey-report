@@ -58,11 +58,14 @@ tr:hover { background: #f8f9ff; }
 .hi-mid { color: var(--orange); font-weight: 600; }
 .hi-ok { color: var(--green); font-weight: 600; }
 
-/* Concern cards */
-.concern-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--r); padding: 12px 14px; margin-bottom: 10px; box-shadow: var(--shadow); }
+/* Concern cards - 3 per row grid */
+.concerns-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.concern-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--r); padding: 12px 14px; box-shadow: var(--shadow); }
 .concern-card .cat { font-size: 12px; font-weight: 700; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid #eee; }
 .concern-card .item { padding: 5px 0; border-bottom: 1px dashed #eee; font-size: 11px; }
 .concern-card .item:last-child { border-bottom: none; }
+@media (max-width: 800px) { .concerns-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 550px) { .concerns-grid { grid-template-columns: 1fr; } }
 .who { font-weight: 700; color: var(--primary); }
 .org-tag { font-size: 10px; background: #e8f0fe; color: var(--primary); padding: 1px 6px; border-radius: 8px; margin-left: 4px; white-space: nowrap; }
 .position { font-size: 10px; color: var(--text-light); margin-left: 4px; }
@@ -302,7 +305,7 @@ tr:hover { background: #f8f9ff; }
 <div class="filter-bar">
   <label style="font-size:11px;font-weight:600;">筛选三级组织：</label>
   <select id="deptFilter" onchange="filterConcerns()">
-    <option value="">全部（11人有具体困惑）</option>
+    <option value="">全部（18人，7类反馈）</option>
     <option value="BD 本地客户部">BD 本地客户部</option>
     <option value="DO 数字运营部">DO 数字运营部</option>
     <option value="FL 佛州大区">FL 佛州大区</option>
@@ -317,6 +320,7 @@ tr:hover { background: #f8f9ff; }
   <label style="font-size:11px;font-weight:600;margin-left:12px;">困惑类型：</label>
   <select id="typeFilter" onchange="filterConcerns()">
     <option value="">全部</option>
+    <option value="无特殊困难/正面反馈">无特殊困难/正面反馈</option>
     <option value="考勤/人事制度">考勤/人事制度</option>
     <option value="流程/制度/对接不清">流程/制度/对接不清</option>
     <option value="业务技能提升/学习需求">业务技能提升/学习需求</option>
@@ -327,7 +331,19 @@ tr:hover { background: #f8f9ff; }
   <span class="count" id="concernCount"></span>
 </div>
 
-<div id="concernsContainer">
+<div id="concernsContainer" class="concerns-grid">
+  <!-- 无特殊困难 / 正面反馈 -->
+  <div class="concern-card" data-dept="OM 操作管理部,BD 本地客户部,GUS 人力资源部,NE 东北大区,WE 美西大区,TX 德州大区,FL 佛州大区" data-type="无特殊困难/正面反馈">
+    <div class="cat" style="color:var(--green);">✅ 无特殊困难 / 正面反馈（7人）</div>
+    <div class="item"><span class="who">Mike Shih</span><span class="org-tag">OM 操作管理部</span><span class="position">高级仓库租赁专员</span></div>
+    <div class="item"><span class="who">Jason Luo</span><span class="org-tag">BD 本地客户部</span><span class="position">运营支持主管</span></div>
+    <div class="item"><span class="who">Emma Fu</span><span class="org-tag">GUS 人力资源部</span><span class="position">招聘助理</span></div>
+    <div class="item"><span class="who">Jin Hui</span><span class="org-tag">NE 东北大区</span><span class="position">站点运营专员</span></div>
+    <div class="item"><span class="who">Alex Zeng</span><span class="org-tag">WE 美西大区</span><span class="position">仓库文员</span></div>
+    <div class="item"><span class="who">Nina Zheng</span><span class="org-tag">TX 德州大区</span><span class="position">分拣员</span></div>
+    <div class="item"><span class="who">Jerry Yu</span><span class="org-tag">NE 东北大区</span><span class="position">调度员</span></div>
+  </div>
+
   <!-- 考勤/人事制度 -->
   <div class="concern-card" data-dept="GUS 人力资源部" data-type="考勤/人事制度">
     <div class="cat" style="color:var(--purple);">📋 考勤 / 人事制度（1人）</div>
