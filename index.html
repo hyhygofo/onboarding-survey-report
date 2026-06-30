@@ -302,7 +302,7 @@ tr:hover { background: #f8f9ff; }
 <div class="filter-bar">
   <label style="font-size:11px;font-weight:600;">筛选三级组织：</label>
   <select id="deptFilter" onchange="filterConcerns()">
-    <option value="">全部部门（8人有具体困惑）</option>
+    <option value="">全部（11人有具体困惑）</option>
     <option value="BD 本地客户部">BD 本地客户部</option>
     <option value="DO 数字运营部">DO 数字运营部</option>
     <option value="FL 佛州大区">FL 佛州大区</option>
@@ -314,37 +314,35 @@ tr:hover { background: #f8f9ff; }
     <option value="TX 德州大区">TX 德州大区</option>
     <option value="WE 美西大区">WE 美西大区</option>
   </select>
+  <label style="font-size:11px;font-weight:600;margin-left:12px;">困惑类型：</label>
+  <select id="typeFilter" onchange="filterConcerns()">
+    <option value="">全部</option>
+    <option value="考勤/人事制度">考勤/人事制度</option>
+    <option value="流程/制度/对接不清">流程/制度/对接不清</option>
+    <option value="业务技能提升/学习需求">业务技能提升/学习需求</option>
+    <option value="沟通渠道/信息混乱">沟通渠道/信息混乱</option>
+    <option value="业务理解/离职风险">业务理解/离职风险</option>
+    <option value="技术探索">技术探索</option>
+  </select>
   <span class="count" id="concernCount"></span>
 </div>
 
 <div id="concernsContainer">
-  <!-- 无特殊困难 / 正面反馈 -->
-  <div class="concern-card" data-dept="DO 数字运营部,GUS 人力资源部,OM 操作管理部,BD 本地客户部,NE 东北大区,WE 美西大区,FL 佛州大区,TX 德州大区,Ground项目部">
-    <div class="cat" style="color:var(--green);">✅ 无特殊困难 / 正面反馈（7人）</div>
-    <div class="item"><span class="who">Mike Shih</span><span class="org-tag">OM 操作管理部</span><span class="position">高级仓库租赁专员</span> — 正面反馈，肯定团队合作精神</div>
-    <div class="item"><span class="who">Jason Luo</span><span class="org-tag">BD 本地客户部</span><span class="position">运营支持主管</span> — "目前没有"</div>
-    <div class="item"><span class="who">Emma Fu</span><span class="org-tag">GUS 人力资源部</span><span class="position">招聘助理</span> — "非常好谢谢"</div>
-    <div class="item"><span class="who">Jin Hui</span><span class="org-tag">NE 东北大区</span><span class="position">站点运营专员</span> — "暂时没有，目前都比较顺利"</div>
-    <div class="item"><span class="who">Alex Zeng</span><span class="org-tag">WE 美西大区</span><span class="position">仓库文员</span> — "目前学习/被要求掌握的部分都已经掌握"</div>
-    <div class="item"><span class="who">Nina Zheng</span><span class="org-tag">TX 德州大区</span><span class="position">分拣员</span> — "目前没有发现，同事都很友好，都很乐意帮助我"</div>
-    <div class="item"><span class="who">Jerry Yu</span><span class="org-tag">NE 东北大区</span><span class="position">调度员</span> — "🈚️"</div>
-  </div>
-
   <!-- 考勤/人事制度 -->
-  <div class="concern-card" data-dept="GUS 人力资源部">
+  <div class="concern-card" data-dept="GUS 人力资源部" data-type="考勤/人事制度">
     <div class="cat" style="color:var(--purple);">📋 考勤 / 人事制度（1人）</div>
     <div class="item"><span class="who">Ivy Yang</span><span class="org-tag">GUS 人力资源部</span><span class="position">初级招聘专员</span><br><span style="color:var(--text-dim);">"迟到补假怎么补才能不扣钱。早退了一分钟怎么办"</span></div>
   </div>
 
   <!-- 流程/制度/对接 -->
-  <div class="concern-card" data-dept="MS 中南大区,NE 东北大区">
+  <div class="concern-card" data-dept="MS 中南大区,NE 东北大区" data-type="流程/制度/对接不清">
     <div class="cat" style="color:var(--red);">🔴 流程 / 制度 / 对接不清（2人）</div>
     <div class="item"><span class="who">Christy Wu</span><span class="org-tag">MS 中南大区</span><span class="position">站点运营专员</span><br><span style="color:var(--text-dim);">"一些特殊情况的处理以及对应需要对接处理特殊情况的部门"</span></div>
     <div class="item"><span class="who">Eddy Yuam</span><span class="org-tag">NE 东北大区</span><span class="position">调度员</span><br><span style="color:var(--text-dim);">"流程繁杂"</span></div>
   </div>
 
   <!-- 业务技能提升 -->
-  <div class="concern-card" data-dept="Ground项目部,TX 德州大区,DO 数字运营部,OM 操作管理部">
+  <div class="concern-card" data-dept="Ground项目部,TX 德州大区,DO 数字运营部,OM 操作管理部" data-type="业务技能提升/学习需求">
     <div class="cat" style="color:var(--orange);">🟡 业务技能提升 / 管理能力 / 学习需求（3人）</div>
     <div class="item"><span class="who">Donny Wu</span><span class="org-tag">TX 德州大区</span><span class="position">调度员</span><br><span style="color:var(--text-dim);">"我希望多了解一下我的本职工作和人际管理……我们有外国人在做小工但是他们基本是语言不通，所以耐心交流也是很重要……最重要的我还是希望多学习一些我部门的工作，以后希望给团队减轻负担。"</span></div>
     <div class="item"><span class="who">Kevin Bao</span><span class="org-tag">Ground项目部</span><span class="position">站点培训生</span><br><span style="color:var(--text-dim);">"如何管理 DSP 并且与司机进行有效的沟通"</span></div>
@@ -352,20 +350,20 @@ tr:hover { background: #f8f9ff; }
   </div>
 
   <!-- 沟通/信息混乱 -->
-  <div class="concern-card" data-dept="GUS 人力资源部">
+  <div class="concern-card" data-dept="GUS 人力资源部" data-type="沟通渠道/信息混乱">
     <div class="cat" style="color:var(--pink);">🟣 沟通渠道 / 信息混乱（1人）</div>
     <div class="item"><span class="who">Amber Huang</span><span class="org-tag">GUS 人力资源部</span><span class="position">招聘专员</span><br><span style="color:var(--text-dim);">"群过多，沟通效果不好，且感觉混乱; 貌似系统里啥都有，可需要帮助的时候不知道怎么办，该找谁，真正的问题找到了人也有同样的无力感"</span></div>
   </div>
 
   <!-- 业务理解/动机 -->
-  <div class="concern-card" data-dept="WE 美西大区,Ground项目部">
+  <div class="concern-card" data-dept="WE 美西大区,Ground项目部" data-type="业务理解/离职风险">
     <div class="cat" style="color:var(--cyan);">🔵 业务理解 / 工作动机（2人）</div>
     <div class="item"><span class="who">Sandy Ji</span><span class="org-tag">WE 美西大区</span><span class="position">分拣员</span><br><span style="color:var(--text-dim);">"整個分揀的系統裡面，應該是時效最為重要吧……請問這個對嗎？" — 对工作核心目标缺乏明确确认</span></div>
     <div class="item"><span class="who">Eric Chen</span><span class="org-tag">Ground项目部</span><span class="position">站点培训生</span><br><span style="color:var(--text-dim);">"钱太少" — ⚠️ 薪酬不满，存在离职风险</span></div>
   </div>
 
   <!-- AI探索 -->
-  <div class="concern-card" data-dept="DO 数字运营部">
+  <div class="concern-card" data-dept="DO 数字运营部" data-type="技术探索">
     <div class="cat" style="color:var(--cyan);">🤖 技术探索（1人）</div>
     <div class="item"><span class="who">Yifu Ye</span><span class="org-tag">DO 数字运营部</span><span class="position">大数据开发工程师</span><br><span style="color:var(--text-dim);">"ai探索中"</span></div>
   </div>
@@ -381,19 +379,23 @@ tr:hover { background: #f8f9ff; }
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script>
 function filterConcerns() {
-  const val = document.getElementById('deptFilter').value;
+  const deptVal = document.getElementById('deptFilter').value;
+  const typeVal = document.getElementById('typeFilter').value;
   const cards = document.querySelectorAll('#concernsContainer .concern-card');
   let visible = 0;
   cards.forEach(c => {
     const depts = c.getAttribute('data-dept') || '';
-    if (!val || depts.includes(val)) {
+    const types = c.getAttribute('data-type') || '';
+    const matchDept = !deptVal || depts.includes(deptVal);
+    const matchType = !typeVal || types.includes(typeVal);
+    if (matchDept && matchType) {
       c.style.display = '';
       visible++;
     } else {
       c.style.display = 'none';
     }
   });
-  document.getElementById('concernCount').textContent = val ? `显示 ${visible} 条` : '';
+  document.getElementById('concernCount').textContent = (deptVal || typeVal) ? `显示 ${visible} 条` : '';
 }
 document.getElementById('concernCount').textContent = '';
 
