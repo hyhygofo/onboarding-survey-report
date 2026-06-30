@@ -151,18 +151,8 @@ tr:hover { background: #f8f9ff; }
   </div>
 </div>
 
-<div class="badge-row">
-  <span class="badge badge-r">🔴 HRBP未联：7人（38.9%）</span>
-  <span class="badge badge-y">🟡 1on1匆忙：5人 | 系统需帮扶：4人 | 流程不足：5人</span>
-  <span class="badge badge-g">🟢 团队融入：83.3% | 成长地图4.62/5</span>
-</div>
-
 <!-- Charts -->
 <div class="charts-row">
-  <div class="chart-box">
-    <div class="ct">各项指标达标率对比</div>
-    <canvas id="chartBar" height="180"></canvas>
-  </div>
   <div class="chart-box">
     <div class="ct">成长地图评分分布</div>
     <canvas id="chartGrowth" height="180"></canvas>
@@ -403,30 +393,6 @@ tr:hover { background: #f8f9ff; }
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script>
-// ── Bar chart: 各项达标率 ──
-new Chart(document.getElementById('chartBar'), {
-  type: 'bar',
-  data: {
-    labels: ['团队融入','成长地图','文档同步','1对1沟通','系统掌握','流程了解','HRBP联系'],
-    datasets: [{
-      label: '达标率 %',
-      data: [83.3, 88.9, 77.8, 72.2, 72.2, 72.2, 61.1],
-      backgroundColor: ['#0d904f','#0d904f','#3366ff','#e37400','#e37400','#e37400','#d93025'],
-      borderRadius: 4,
-      barThickness: 28
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: { legend: { display: false } },
-    scales: {
-      y: { min: 0, max: 100, ticks: { callback: v => v+'%', font: { size: 10 } }, grid: { color: '#eee' } },
-      x: { ticks: { font: { size: 9 } }, grid: { display: false } }
-    }
-  }
-});
-
 // ── Growth score distribution ──
 new Chart(document.getElementById('chartGrowth'), {
   type: 'bar',
