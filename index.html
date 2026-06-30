@@ -3,454 +3,489 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>入职两周满意度调研 — 分析报告</title>
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<title>入职两周满意度调研分析报告</title>
 <style>
 :root {
-  --bg:#1a1d23; --card-bg:#21252b; --card-border:#2c313a;
-  --text:#c8ccd4; --text-dim:#8b8f97;
-  --brand:#E8610A; --brand-bg:rgba(232,97,10,0.12);
-  --red:#e0556a; --red-bg:rgba(224,85,106,0.12);
-  --green:#4caf50; --green-bg:rgba(76,175,80,0.12);
-  --yellow:#e5a72d; --yellow-bg:rgba(229,167,45,0.12);
-  --r:6px;
+  --bg: #f0f2f5;
+  --card-bg: #ffffff;
+  --card-border: #e8eaed;
+  --text: #1a1a2e;
+  --text-dim: #5f6368;
+  --text-light: #80868b;
+  --r: 10px;
+  --primary: #3366ff;
+  --green: #0d904f;
+  --red: #d93025;
+  --orange: #e37400;
+  --yellow: #f9ab00;
+  --purple: #9334e6;
+  --cyan: #007b83;
+  --pink: #c92786;
+  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
 }
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:12px;line-height:1.5}
-.wrap{max-width:1060px;margin:0 auto;padding:16px}
-h1{font-size:19px;font-weight:700;color:#fff;margin-bottom:2px}
-h1 .sub{font-size:12px;font-weight:400;color:var(--text-dim);margin-left:8px}
-h2{font-size:16px;font-weight:700;color:#fff;margin:20px 0 10px;padding-bottom:5px;border-bottom:2px solid var(--brand)}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; font-size: 13px; }
+.container { max-width: 1060px; margin: 0 auto; padding: 20px 16px 40px; }
+h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
+.subtitle { font-size: 11px; color: var(--text-dim); margin-bottom: 20px; }
+h2 { font-size: 15px; font-weight: 700; margin: 28px 0 14px; padding-bottom: 6px; border-bottom: 2px solid var(--primary); color: var(--text); }
 
-/* === SECTION 1: KPI === */
-.kpi-row{display:flex;gap:6px;flex-wrap:nowrap;margin-bottom:16px}
-.kpi{flex:1;min-width:0;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--r);padding:7px 8px}
-.kpi .l{font-size:9px;color:var(--text-dim);letter-spacing:.2px;margin-bottom:2px}
-.kpi .v{font-size:18px;font-weight:700;line-height:1.1}
-.kpi .s{font-size:9px;color:var(--text-dim);margin-top:1px}
-.kpi.w{border-left:3px solid var(--red)}.kpi.w .v{color:var(--red)}
-.kpi.o{border-left:3px solid var(--green)}.kpi.o .v{color:var(--green)}
-.kpi.a{border-left:3px solid var(--yellow)}.kpi.a .v{color:var(--yellow)}
+/* KPI row */
+.kpi-row { display: flex; gap: 8px; flex-wrap: nowrap; margin-bottom: 18px; }
+.kpi { flex: 1; min-width: 0; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--r); padding: 9px 10px; box-shadow: var(--shadow); }
+.kpi .stat { font-size: 22px; font-weight: 700; line-height: 1.1; }
+.kpi .label { font-size: 10px; color: var(--text-dim); margin-top: 2px; line-height: 1.3; }
+.kpi .desc { font-size: 9px; color: var(--text-light); margin-top: 2px; }
 
-/* === SECTION 2: TABLE === */
-.table-wrap{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--r);overflow:hidden;margin-bottom:8px}
-table{width:100%;border-collapse:collapse;font-size:11px}
-th{background:rgba(232,97,10,0.13);color:var(--brand);font-weight:600;text-align:center;padding:7px 6px;font-size:10px;border-bottom:1px solid var(--card-border)}
-td{padding:5px 6px;border-bottom:1px solid var(--card-border);text-align:center;color:var(--text)}
-tr:last-child td{border-bottom:none}
-th:first-child,td:first-child{text-align:left;font-weight:600;min-width:110px}
-th:nth-child(2),td:nth-child(2){text-align:left;min-width:120px}
-tr:hover td{background:rgba(255,255,255,0.02)}
-.g{color:var(--green)}.r{color:var(--red)}.y{color:var(--yellow)}.d{color:var(--text-dim)}
+/* Summary badge row */
+.badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.badge { font-size: 10px; padding: 2px 8px; border-radius: 12px; font-weight: 600; white-space: nowrap; }
+.badge-r { background: #fce8e6; color: var(--red); }
+.badge-y { background: #fef7e0; color: #b06000; }
+.badge-g { background: #e6f4ea; color: var(--green); }
 
-/* === SECTION 3: CONCERNS === */
-.concern-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--r);padding:10px 14px;margin-bottom:6px}
-.concern-card .cat{display:inline-block;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:600;margin-bottom:6px}
-.cat-r{background:var(--red-bg);color:var(--red)}.cat-y{background:var(--yellow-bg);color:var(--yellow)}
-.cat-b{background:rgba(102,157,246,0.12);color:#669df6}.cat-p{background:rgba(171,103,237,0.12);color:#ab67ed}
-.cat-g{background:var(--green-bg);color:var(--green)}.cat-o{background:var(--brand-bg);color:var(--brand)}
-.concern-item{font-size:11px;margin:3px 0;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
-.concern-item:last-child{border-bottom:none}
-.concern-item .who{font-weight:600;color:#fff}
-.concern-item .dept{color:var(--brand);margin:0 4px;font-size:10px}
-.concern-item .text{color:var(--text-dim);margin-top:2px;display:block;line-height:1.6}
-.concern-item.hidden{display:none}
+/* Table */
+.tbl-wrap { overflow-x: auto; margin-bottom: 20px; }
+table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 11px; background: var(--card-bg); border-radius: var(--r); box-shadow: var(--shadow); overflow: hidden; }
+th, td { padding: 7px 10px; text-align: center; border-bottom: 1px solid var(--card-border); }
+th { background: #f8f9fa; font-weight: 700; color: var(--text-dim); font-size: 10px; white-space: nowrap; position: sticky; top: 0; }
+td:first-child, th:first-child { text-align: left; font-weight: 600; white-space: nowrap; color: var(--text); }
+tr:last-child td { border-bottom: none; }
+tr:hover { background: #f8f9ff; }
 
-/* Filter & Export */
-.filter-bar{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.filter-bar label{font-size:11px;color:var(--text-dim)}
-.filter-bar select{background:var(--card-bg);color:var(--text);border:1px solid var(--card-border);border-radius:var(--r);padding:5px 10px;font-size:11px;cursor:pointer;outline:none}
-.filter-bar select:focus{border-color:var(--brand)}
-.export-bar{text-align:center;padding:20px 0 10px}
-.btn-export{display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;border:none;border-radius:var(--r);padding:8px 20px;font-size:12px;font-weight:600;cursor:pointer;transition:opacity .15s}
-.btn-export:hover{opacity:.85}
+/* Heat colors */
+.hi-hi { color: var(--red); font-weight: 700; }
+.hi-mid { color: var(--orange); font-weight: 600; }
+.hi-ok { color: var(--green); font-weight: 600; }
+
+/* Concern cards */
+.concern-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--r); padding: 12px 14px; margin-bottom: 10px; box-shadow: var(--shadow); }
+.concern-card .cat { font-size: 12px; font-weight: 700; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid #eee; }
+.concern-card .item { padding: 5px 0; border-bottom: 1px dashed #eee; font-size: 11px; }
+.concern-card .item:last-child { border-bottom: none; }
+.who { font-weight: 700; color: var(--primary); }
+.org-tag { font-size: 10px; background: #e8f0fe; color: var(--primary); padding: 1px 6px; border-radius: 8px; margin-left: 4px; white-space: nowrap; }
+.position { font-size: 10px; color: var(--text-light); margin-left: 4px; }
+
+/* Filter bar */
+.filter-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+.filter-bar select { padding: 5px 10px; border: 1px solid var(--card-border); border-radius: 6px; font-size: 11px; background: var(--card-bg); color: var(--text); min-width: 160px; }
+.filter-bar .count { font-size: 11px; color: var(--text-dim); }
+
+/* Export btn */
+.export-bar { text-align: center; margin-top: 28px; }
+.export-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 20px; background: var(--primary); color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; }
+.export-btn:hover { opacity: .9; }
+
+/* Risk table */
+.risk-badge { font-size: 9px; padding: 1px 5px; border-radius: 4px; font-weight: 600; white-space: nowrap; }
+.risk-r { background: #fce8e6; color: var(--red); }
+.risk-y { background: #fef7e0; color: #b06000; }
+.risk-g { background: #e6f4ea; color: var(--green); }
+
+/* Charts row */
+.charts-row { display: flex; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
+.chart-box { flex: 1; min-width: 280px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--r); padding: 12px; box-shadow: var(--shadow); }
+.chart-box .ct { font-size: 11px; font-weight: 700; margin-bottom: 6px; color: var(--text-dim); }
+
+/* Section header bar */
+.sec-note { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 11px; color: var(--text-dim); }
+
+@media (max-width: 800px) {
+  .kpi-row { flex-wrap: wrap; }
+  .kpi { min-width: 30%; }
+}
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="container" id="report-root">
 
-<!-- TITLE -->
-<h1>「同行·两周记」融入反馈<span class="sub">分析报告 | N=18 | 2026.06.30 更新</span></h1>
+<h1>「同行·两周记」—— 入职满意度调研分析报告</h1>
+<p class="subtitle">调研周期：2026-06-25 ~ 2026-06-30 ｜ 有效样本：N=18 ｜ 部门维度：三级组织</p>
 
-<!-- ═══════════ SECTION 1: OVERALL ═══════════ -->
-<h2>一、总体各指标情况</h2>
+<!-- ═══ SECTION 1: OVERALL KPI ═══ -->
+<h2>一、总体各指标情况（N=18）</h2>
 
 <div class="kpi-row">
-  <div class="kpi a"><div class="l">⚠ HRBP 主动联系率</div><div class="v">61.1%</div><div class="s">11/18 已联系，7人未触达</div></div>
-  <div class="kpi a"><div class="l">⚡ 1对1 沟通质量</div><div class="v">72.2%</div><div class="s">13人充分，5人匆忙（27.8%）</div></div>
-  <div class="kpi o"><div class="l">📄 文档/材料同步</div><div class="v">77.8%</div><div class="s">14人已同步，4人部分</div></div>
-  <div class="kpi a"><div class="l">🔧 系统操作掌握</div><div class="v">72.2%</div><div class="s">13人已掌握，4需帮助，1未掌握</div></div>
-  <div class="kpi a"><div class="l">📖 业务流程了解</div><div class="v">72.2%</div><div class="s">13人清晰，5人大概了解</div></div>
-  <div class="kpi o"><div class="l">🤝 团队融入感</div><div class="v">83.3%</div><div class="s">15人良好，3人观察中</div></div>
-  <div class="kpi o"><div class="l">🗺️ 成长地图关注</div><div class="v">4.62</div><div class="s">均分/5，16人有效，2人未评</div></div>
+  <!-- Q5 团队融入 - FIRST -->
+  <div class="kpi">
+    <div class="stat" style="color:var(--green);">83.3%</div>
+    <div class="label">🤝 团队融入感</div>
+    <div class="desc">15人良好，3人观察中</div>
+  </div>
+  <!-- Q7 成长地图 - SECOND -->
+  <div class="kpi">
+    <div class="stat" style="color:var(--green);">4.62<span style="font-size:12px;font-weight:400;">/5</span></div>
+    <div class="label">🗺 成长地图有-效度</div>
+    <div class="desc">16人有效评分(88.9%)，2人未感知</div>
+  </div>
+  <!-- Q1 -->
+  <div class="kpi">
+    <div class="stat" style="color:var(--orange);">72.2%</div>
+    <div class="label">⚡ 1对1沟通充分</div>
+    <div class="desc">13人充分，5人匆忙(27.8%)</div>
+  </div>
+  <!-- Q2 -->
+  <div class="kpi">
+    <div class="stat" style="color:var(--green);">77.8%</div>
+    <div class="label">📄 文档/材料同步</div>
+    <div class="desc">14人已同步，4人仅部分</div>
+  </div>
+  <!-- Q3 -->
+  <div class="kpi">
+    <div class="stat" style="color:var(--orange);">72.2%</div>
+    <div class="label">🔧 系统操作掌握</div>
+    <div class="desc">13人已掌握，4人需帮扶，1人未掌握</div>
+  </div>
+  <!-- Q4 -->
+  <div class="kpi">
+    <div class="stat" style="color:var(--orange);">72.2%</div>
+    <div class="label">📖 业务流程了解</div>
+    <div class="desc">13人清晰，5人仅大概</div>
+  </div>
+  <!-- Q6 -->
+  <div class="kpi">
+    <div class="stat" style="color:var(--red);">61.1%</div>
+    <div class="label">⚠ HRBP 主动联系率</div>
+    <div class="desc">11人已联系，7人未触达(38.9%)</div>
+  </div>
 </div>
 
-<!-- ═══════════ SECTION 2: BY DEPARTMENT ═══════════ -->
-<h2>二、各项指标 × 各部门情况</h2>
-
-<div class="table-wrap">
-<table>
-<thead>
-<tr>
-  <th>#</th><th>指标</th>
-  <th>CLT02<br>1人</th>
-  <th>MCO01<br>1人</th>
-  <th>OG美东区<br>1人</th>
-  <th>OG美南区<br>1人</th>
-  <th>TEB01<br>1人</th>
-  <th>仓库租赁<br>1人</th>
-  <th>分拣组<br>2人</th>
-  <th>加拿大HR<br>1人</th>
-  <th>加拿大运营<br>1人</th>
-  <th>实施运营<br>1人</th>
-  <th>招聘支持<br>1人</th>
-  <th>综办组<br>1人</th>
-  <th>美西HR<br>1人</th>
-  <th>调度组<br>3人</th>
-  <th>财客研发<br>1人</th>
-</tr>
-</thead>
-<tbody>
-
-<!-- Q1 -->
-<tr>
-  <td>1</td><td>直接上级<br>1对1沟通</td>
-  <td class="g">≥1次</td>
-  <td class="g">≥1次</td>
-  <td class="g">≥1次</td>
-  <td class="r">匆忙</td>
-  <td class="g">≥1次</td>
-  <td class="g">≥1次</td>
-  <td class="g">2/2 ≥1次</td>
-  <td class="r">匆忙</td>
-  <td class="r">匆忙</td>
-  <td class="r">匆忙</td>
-  <td class="g">≥1次</td>
-  <td class="g">≥1次</td>
-  <td class="g">≥1次</td>
-  <td class="g">2/3 ≥1次<br><span class="y">1匆忙</span></td>
-  <td class="g">≥1次</td>
-</tr>
-<tr style="background:rgba(255,255,255,0.01)"><td colspan="17" style="text-align:left;font-size:10px;color:var(--text-dim);padding:2px 10px">
-  5人"匆忙"：OG美南区(Kevin Bao)、加拿大HR(Amber Huang)、加拿大运营(Jason Luo)、实施运营(Martin Li)、调度组(Donny Wu)
-</td></tr>
-
-<!-- Q2 -->
-<tr>
-  <td>2</td><td>业务文档/<br>材料同步</td>
-  <td class="g">✓</td>
-  <td class="g">✓</td>
-  <td class="g">✓</td>
-  <td class="g">✓</td>
-  <td class="g">✓</td>
-  <td class="g">✓</td>
-  <td class="g">2/2 ✓</td>
-  <td class="y">部分</td>
-  <td class="g">✓</td>
-  <td class="y">部分</td>
-  <td class="g">✓</td>
-  <td class="g">✓</td>
-  <td class="g">✓</td>
-  <td class="g">2/3 ✓<br><span class="y">1部分</span></td>
-  <td class="g">✓</td>
-</tr>
-<tr style="background:rgba(255,255,255,0.01)"><td colspan="17" style="text-align:left;font-size:10px;color:var(--text-dim);padding:2px 10px">
-  4人"部分同步"：加拿大HR(Amber Huang)、实施运营(Martin Li)、调度组(Donny Wu)、（招聘支持已补全）
-</td></tr>
-
-<!-- Q3 -->
-<tr>
-  <td>3</td><td>系统操作<br>掌握情况</td>
-  <td class="g">✓</td>
-  <td class="g">✓</td>
-  <td class="g">✓</td>
-  <td class="g">✓</td>
-  <td class="g">✓</td>
-  <td class="g">✓</td>
-  <td class="g">2/2 ✓</td>
-  <td class="r">未掌握<br>无指导</td>
-  <td class="g">✓</td>
-  <td class="r">需帮助</td>
-  <td class="y">需帮助</td>
-  <td class="g">✓</td>
-  <td class="y">需帮助</td>
-  <td class="g">2/3 ✓<br><span class="y">1需帮</span></td>
-  <td class="g">✓</td>
-</tr>
-<tr style="background:rgba(255,255,255,0.01)"><td colspan="17" style="text-align:left;font-size:10px;color:var(--text-dim);padding:2px 10px">
-  ⚠ 5人需帮扶/未掌握：加拿大HR(Amber Huang·未掌握无指导)、实施运营(Martin Li)、招聘支持(Ivy Yang)、美西HR(Emma Fu)、调度组(Donny Wu)
-</td></tr>
-
-<!-- Q4 -->
-<tr>
-  <td>4</td><td>核心业务<br>流程了解</td>
-  <td class="g">清晰</td>
-  <td class="g">清晰</td>
-  <td class="g">清晰</td>
-  <td class="g">清晰</td>
-  <td class="g">清晰</td>
-  <td class="g">清晰</td>
-  <td class="g">2/2 清晰</td>
-  <td class="y">大概</td>
-  <td class="g">清晰</td>
-  <td class="y">大概</td>
-  <td class="g">清晰</td>
-  <td class="g">清晰</td>
-  <td class="g">清晰</td>
-  <td class="g">2/3 清晰<br><span class="y">1大概</span></td>
-  <td class="g">清晰</td>
-</tr>
-<tr style="background:rgba(255,255,255,0.01)"><td colspan="17" style="text-align:left;font-size:10px;color:var(--text-dim);padding:2px 10px">
-  5人"大概了解"：加拿大HR(Amber Huang)、实施运营(Martin Li)、调度组(Donny Wu)、分拣组(Sandy Ji·已清晰)、OG美东区(Eric Chen·清晰)
-</td></tr>
-
-<!-- Q5 -->
-<tr>
-  <td>5</td><td>团队融入感</td>
-  <td class="g">良好</td>
-  <td class="g">良好</td>
-  <td class="g">良好</td>
-  <td class="g">良好</td>
-  <td class="g">良好</td>
-  <td class="g">良好</td>
-  <td class="g">2/2 良好</td>
-  <td class="r">观察中</td>
-  <td class="g">良好</td>
-  <td class="r">观察中</td>
-  <td class="g">良好</td>
-  <td class="g">良好</td>
-  <td class="g">良好</td>
-  <td class="g">2/3 良好<br><span class="y">1观察</span></td>
-  <td class="g">良好</td>
-</tr>
-<tr style="background:rgba(255,255,255,0.01)"><td colspan="17" style="text-align:left;font-size:10px;color:var(--text-dim);padding:2px 10px">
-  3人"还在观察"：加拿大HR(Amber Huang)、实施运营(Martin Li)、调度组(Donny Wu)
-</td></tr>
-
-<!-- Q6 -->
-<tr>
-  <td>6</td><td>HRBP<br>主动联系</td>
-  <td class="r">✗</td>
-  <td class="g">✓</td>
-  <td class="r">✗</td>
-  <td class="g">✓</td>
-  <td class="r">✗</td>
-  <td class="g">✓</td>
-  <td class="g">2/2 ✓</td>
-  <td class="g">✓</td>
-  <td class="g">✓</td>
-  <td class="r">✗</td>
-  <td class="g">✓</td>
-  <td class="g">✓</td>
-  <td class="r">✗</td>
-  <td class="g">2/3 ✓<br><span class="r">1✗</span></td>
-  <td class="r">✗</td>
-</tr>
-<tr style="background:rgba(255,255,255,0.01)"><td colspan="17" style="text-align:left;font-size:10px;color:var(--text-dim);padding:2px 10px">
-  7人未联系：CLT02(Christy Wu)、OG美东区(Eric Chen)、TEB01(Jin Hui)、实施运营(Martin Li)、美西HR(Emma Fu)、调度组(Donny Wu)、财客研发(Yifu Ye)
-</td></tr>
-
-<!-- Q7 -->
-<tr>
-  <td>7</td><td>成长地图<br>关注度(1-5)</td>
-  <td class="g">5</td>
-  <td class="g">5</td>
-  <td class="g">5</td>
-  <td class="g">5</td>
-  <td class="g">5</td>
-  <td class="g">5</td>
-  <td class="g">5分<br><span class="r">1人3分</span></td>
-  <td class="d">未评</td>
-  <td class="g">5</td>
-  <td class="r">2分</td>
-  <td class="g">5</td>
-  <td class="g">5</td>
-  <td class="g">5</td>
-  <td class="g">2人5分<br><span class="y">1人4分</span></td>
-  <td class="g">5</td>
-</tr>
-<tr style="background:rgba(255,255,255,0.01)"><td colspan="17" style="text-align:left;font-size:10px;color:var(--text-dim);padding:2px 10px">
-  2人未评：加拿大HR(Amber Huang)、调度组(Eddy Yuam)；低分：实施运营(Martin Li=2)、分拣组(Sandy Ji=3)、调度组(Donny Wu=4)
-</td></tr>
-
-</tbody>
-</table>
+<div class="badge-row">
+  <span class="badge badge-r">🔴 HRBP未联：7人（38.9%）</span>
+  <span class="badge badge-y">🟡 1on1匆忙：5人 | 系统需帮扶：4人 | 流程不足：5人</span>
+  <span class="badge badge-g">🟢 团队融入：83.3% | 成长地图4.62/5</span>
 </div>
 
-<!-- ═══════════ SECTION 3: OPEN CONCERNS ═══════════ -->
+<!-- Charts -->
+<div class="charts-row">
+  <div class="chart-box">
+    <div class="ct">各项指标达标率对比</div>
+    <canvas id="chartBar" height="180"></canvas>
+  </div>
+  <div class="chart-box">
+    <div class="ct">成长地图评分分布</div>
+    <canvas id="chartGrowth" height="180"></canvas>
+  </div>
+</div>
+
+<!-- ═══ SECTION 2: BY DEPT ═══ -->
+<h2>二、各指标 × 三级组织分布</h2>
+
+<div class="tbl-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>三级组织</th>
+        <th>人数</th>
+        <th>🤝 团队融入</th>
+        <th>🗺 成长地图</th>
+        <th>⚡ 1对1沟通</th>
+        <th>📄 文档同步</th>
+        <th>🔧 系统掌握</th>
+        <th>📖 业务流程</th>
+        <th>⚠ HRBP联系</th>
+        <th>风险</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>BD 本地客户部</td>
+        <td>1</td>
+        <td class="hi-ok">100%</td>
+        <td>5.0</td>
+        <td class="hi-mid">匆忙</td>
+        <td class="hi-ok">已同步</td>
+        <td class="hi-ok">已掌握</td>
+        <td class="hi-mid">大概</td>
+        <td class="hi-ok">已联系</td>
+        <td><span class="risk-badge risk-y">2项</span></td>
+      </tr>
+      <tr>
+        <td>DO 数字运营部</td>
+        <td>1</td>
+        <td class="hi-ok">100%</td>
+        <td>5.0</td>
+        <td class="hi-ok">充分</td>
+        <td class="hi-ok">已同步</td>
+        <td class="hi-ok">已掌握</td>
+        <td class="hi-ok">清晰</td>
+        <td class="hi-hi">未联系</td>
+        <td><span class="risk-badge risk-y">1项</span></td>
+      </tr>
+      <tr>
+        <td>FL 佛州大区</td>
+        <td>1</td>
+        <td class="hi-ok">100%</td>
+        <td>5.0</td>
+        <td class="hi-ok">充分</td>
+        <td class="hi-ok">已同步</td>
+        <td class="hi-ok">已掌握</td>
+        <td class="hi-ok">清晰</td>
+        <td class="hi-ok">已联系</td>
+        <td><span class="risk-badge risk-g">0项</span></td>
+      </tr>
+      <tr style="background:#fef7e0;">
+        <td>GUS 人力资源部</td>
+        <td>3</td>
+        <td class="hi-mid">66.7%</td>
+        <td>5.0</td>
+        <td class="hi-mid">66.7%</td>
+        <td class="hi-mid">66.7%</td>
+        <td class="hi-hi">0%</td>
+        <td class="hi-mid">66.7%</td>
+        <td class="hi-mid">66.7%</td>
+        <td><span class="risk-badge risk-r">3人<br>1~5项</span></td>
+      </tr>
+      <tr>
+        <td>Ground项目部</td>
+        <td>2</td>
+        <td class="hi-ok">100%</td>
+        <td>5.0</td>
+        <td class="hi-mid">50%</td>
+        <td class="hi-ok">已同步</td>
+        <td class="hi-ok">已掌握</td>
+        <td class="hi-ok">清晰</td>
+        <td class="hi-mid">50%</td>
+        <td><span class="risk-badge risk-y">2人各1项</span></td>
+      </tr>
+      <tr>
+        <td>MS 中南大区</td>
+        <td>1</td>
+        <td class="hi-ok">100%</td>
+        <td>5.0</td>
+        <td class="hi-ok">充分</td>
+        <td class="hi-ok">已同步</td>
+        <td class="hi-ok">已掌握</td>
+        <td class="hi-ok">清晰</td>
+        <td class="hi-hi">未联系</td>
+        <td><span class="risk-badge risk-y">1项</span></td>
+      </tr>
+      <tr>
+        <td>NE 东北大区</td>
+        <td>3</td>
+        <td class="hi-ok">100%</td>
+        <td>5.0</td>
+        <td class="hi-ok">充分</td>
+        <td class="hi-ok">已同步</td>
+        <td class="hi-ok">已掌握</td>
+        <td class="hi-ok">清晰</td>
+        <td class="hi-mid">66.7%</td>
+        <td><span class="risk-badge risk-y">2人各1项</span></td>
+      </tr>
+      <tr style="background:#fce8e6;">
+        <td>OM 操作管理部</td>
+        <td>2</td>
+        <td class="hi-mid">50%</td>
+        <td class="hi-hi">3.5</td>
+        <td class="hi-mid">50%</td>
+        <td class="hi-mid">50%</td>
+        <td class="hi-mid">50%</td>
+        <td class="hi-mid">50%</td>
+        <td class="hi-mid">50%</td>
+        <td><span class="risk-badge risk-r">Martin 7项</span></td>
+      </tr>
+      <tr style="background:#fce8e6;">
+        <td>TX 德州大区</td>
+        <td>2</td>
+        <td class="hi-mid">50%</td>
+        <td>4.5</td>
+        <td class="hi-mid">50%</td>
+        <td class="hi-mid">50%</td>
+        <td class="hi-mid">50%</td>
+        <td class="hi-mid">50%</td>
+        <td class="hi-mid">50%</td>
+        <td><span class="risk-badge risk-r">Donny 6项</span></td>
+      </tr>
+      <tr>
+        <td>WE 美西大区</td>
+        <td>2</td>
+        <td class="hi-ok">100%</td>
+        <td class="hi-mid">4.0</td>
+        <td class="hi-ok">充分</td>
+        <td class="hi-mid">50%</td>
+        <td class="hi-ok">已掌握</td>
+        <td class="hi-mid">50%</td>
+        <td class="hi-ok">已联系</td>
+        <td><span class="risk-badge risk-y">Sandy 3项</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p class="sec-note">
+  <span class="risk-badge risk-r">高</span> = 需要重点干预 &nbsp;
+  <span class="risk-badge risk-y">中</span> = 需要关注 &nbsp;
+  <span class="risk-badge risk-g">低</span> = 正常
+</p>
+
+<!-- ═══ SECTION 3: OPEN CONCERNS ═══ -->
 <h2>三、困惑内容归类</h2>
-
 <div class="filter-bar">
-  <label>🔍 按部门筛选：</label>
+  <label style="font-size:11px;font-weight:600;">筛选三级组织：</label>
   <select id="deptFilter" onchange="filterConcerns()">
-    <option value="all">全部部门</option>
-    <option value="CLT02">CLT02</option>
-    <option value="MCO01">MCO01</option>
-    <option value="OG美东区">OG 美东区</option>
-    <option value="OG美南区">OG 美南区</option>
-    <option value="TEB01">TEB01</option>
-    <option value="仓库租赁组">仓库租赁组</option>
-    <option value="分拣组">分拣组</option>
-    <option value="加拿大HR组">加拿大HR组</option>
-    <option value="加拿大运营组">加拿大运营组</option>
-    <option value="实施运营组">实施运营组</option>
-    <option value="招聘支持组">招聘支持组</option>
-    <option value="综办组">综办组</option>
-    <option value="美西区HR组">美西区HR组</option>
-    <option value="调度组">调度组</option>
-    <option value="财客质控研发组">财客质控研发组</option>
+    <option value="">全部部门（8人有具体困惑）</option>
+    <option value="BD 本地客户部">BD 本地客户部</option>
+    <option value="DO 数字运营部">DO 数字运营部</option>
+    <option value="FL 佛州大区">FL 佛州大区</option>
+    <option value="GUS 人力资源部">GUS 人力资源部</option>
+    <option value="Ground项目部">Ground项目部</option>
+    <option value="MS 中南大区">MS 中南大区</option>
+    <option value="NE 东北大区">NE 东北大区</option>
+    <option value="OM 操作管理部">OM 操作管理部</option>
+    <option value="TX 德州大区">TX 德州大区</option>
+    <option value="WE 美西大区">WE 美西大区</option>
   </select>
-  <span id="filterCount" style="font-size:11px;color:var(--text-dim)">（18人，含具体困惑/反馈内容）</span>
+  <span class="count" id="concernCount"></span>
 </div>
 
-<!-- 考勤/人事制度 -->
-<div class="concern-card" data-cat="考勤/人事制度">
-  <div class="cat cat-b">📋 考勤 / 人事制度</div>
-  <div class="concern-item" data-dept="招聘支持组">
-    <span class="who">@Ivy Yang</span><span class="dept">[招聘支持组 · 初级招聘专员]</span>
-    <span class="text">"迟到补假怎么补才能不扣钱。早退了一分钟怎么办。谢谢"</span>
+<div id="concernsContainer">
+  <!-- 无特殊困难 / 正面反馈 -->
+  <div class="concern-card" data-dept="DO 数字运营部,GUS 人力资源部,OM 操作管理部,BD 本地客户部,NE 东北大区,WE 美西大区,FL 佛州大区,TX 德州大区,Ground项目部">
+    <div class="cat" style="color:var(--green);">✅ 无特殊困难 / 正面反馈（7人）</div>
+    <div class="item"><span class="who">Mike Shih</span><span class="org-tag">OM 操作管理部</span><span class="position">高级仓库租赁专员</span> — 正面反馈，肯定团队合作精神</div>
+    <div class="item"><span class="who">Jason Luo</span><span class="org-tag">BD 本地客户部</span><span class="position">运营支持主管</span> — "目前没有"</div>
+    <div class="item"><span class="who">Emma Fu</span><span class="org-tag">GUS 人力资源部</span><span class="position">招聘助理</span> — "非常好谢谢"</div>
+    <div class="item"><span class="who">Jin Hui</span><span class="org-tag">NE 东北大区</span><span class="position">站点运营专员</span> — "暂时没有，目前都比较顺利"</div>
+    <div class="item"><span class="who">Alex Zeng</span><span class="org-tag">WE 美西大区</span><span class="position">仓库文员</span> — "目前学习/被要求掌握的部分都已经掌握"</div>
+    <div class="item"><span class="who">Nina Zheng</span><span class="org-tag">TX 德州大区</span><span class="position">分拣员</span> — "目前没有发现，同事都很友好，都很乐意帮助我"</div>
+    <div class="item"><span class="who">Jerry Yu</span><span class="org-tag">NE 东北大区</span><span class="position">调度员</span> — "🈚️"</div>
   </div>
-</div>
 
-<!-- 流程/制度/对接不清 -->
-<div class="concern-card" data-cat="流程/制度/对接不清">
-  <div class="cat cat-r">🔴 流程 / 制度 / 对接不清</div>
-  <div class="concern-item" data-dept="CLT02">
-    <span class="who">@Christy Wu</span><span class="dept">[CLT02 · 站点运营专员]</span>
-    <span class="text">"一些特殊情况的处理以及对应需要对接处理特殊情况的部门"</span>
+  <!-- 考勤/人事制度 -->
+  <div class="concern-card" data-dept="GUS 人力资源部">
+    <div class="cat" style="color:var(--purple);">📋 考勤 / 人事制度（1人）</div>
+    <div class="item"><span class="who">Ivy Yang</span><span class="org-tag">GUS 人力资源部</span><span class="position">初级招聘专员</span><br><span style="color:var(--text-dim);">"迟到补假怎么补才能不扣钱。早退了一分钟怎么办"</span></div>
   </div>
-  <div class="concern-item" data-dept="调度组">
-    <span class="who">@Eddy Yuam</span><span class="dept">[调度组 · 调度员]</span>
-    <span class="text">"流程繁杂"</span>
-  </div>
-</div>
 
-<!-- 业务技能提升 -->
-<div class="concern-card" data-cat="业务技能提升">
-  <div class="cat cat-y">🟡 业务技能提升 / 管理能力</div>
-  <div class="concern-item" data-dept="调度组">
-    <span class="who">@Donny Wu</span><span class="dept">[调度组 · 调度员]</span>
-    <span class="text">"我希望多了解一下我的本职工作和人际管理……我们有外国人在做小工但是他们基本是语言不通，所以耐心交流也是很重要。最重要的我还是希望多学习一些我部门的工作，以后希望给团队减轻负担。"</span>
+  <!-- 流程/制度/对接 -->
+  <div class="concern-card" data-dept="MS 中南大区,NE 东北大区">
+    <div class="cat" style="color:var(--red);">🔴 流程 / 制度 / 对接不清（2人）</div>
+    <div class="item"><span class="who">Christy Wu</span><span class="org-tag">MS 中南大区</span><span class="position">站点运营专员</span><br><span style="color:var(--text-dim);">"一些特殊情况的处理以及对应需要对接处理特殊情况的部门"</span></div>
+    <div class="item"><span class="who">Eddy Yuam</span><span class="org-tag">NE 东北大区</span><span class="position">调度员</span><br><span style="color:var(--text-dim);">"流程繁杂"</span></div>
   </div>
-  <div class="concern-item" data-dept="OG美南区">
-    <span class="who">@Kevin Bao</span><span class="dept">[OG 美南区 · 站点培训生]</span>
-    <span class="text">"如何管理 DSP 并且与司机进行有效的沟通"</span>
-  </div>
-  <div class="concern-item" data-dept="财客质控研发组">
-    <span class="who">@Yifu Ye</span><span class="dept">[财客质控研发组 · 大数据开发工程师]</span>
-    <span class="text">"AI探索中"</span>
-  </div>
-  <div class="concern-item" data-dept="实施运营组">
-    <span class="who">@Martin Li</span><span class="dept">[实施运营组 · 实施工程师]</span>
-    <span class="text">"需要主管带" — 希望获得更多上级直接指导</span>
-  </div>
-</div>
 
-<!-- 薪酬/待遇相关 -->
-<div class="concern-card" data-cat="薪酬/待遇">
-  <div class="cat cat-o">💰 薪酬 / 待遇感知</div>
-  <div class="concern-item" data-dept="OG美东区">
-    <span class="who">@Eric Chen</span><span class="dept">[OG 美东区 · 站点运营]</span>
-    <span class="text">"钱太少" — 薪酬满意度存在风险，需跟进</span>
+  <!-- 业务技能提升 -->
+  <div class="concern-card" data-dept="Ground项目部,TX 德州大区,DO 数字运营部,OM 操作管理部">
+    <div class="cat" style="color:var(--orange);">🟡 业务技能提升 / 管理能力 / 学习需求（3人）</div>
+    <div class="item"><span class="who">Donny Wu</span><span class="org-tag">TX 德州大区</span><span class="position">调度员</span><br><span style="color:var(--text-dim);">"我希望多了解一下我的本职工作和人际管理……我们有外国人在做小工但是他们基本是语言不通，所以耐心交流也是很重要……最重要的我还是希望多学习一些我部门的工作，以后希望给团队减轻负担。"</span></div>
+    <div class="item"><span class="who">Kevin Bao</span><span class="org-tag">Ground项目部</span><span class="position">站点培训生</span><br><span style="color:var(--text-dim);">"如何管理 DSP 并且与司机进行有效的沟通"</span></div>
+    <div class="item"><span class="who">Martin Li</span><span class="org-tag">OM 操作管理部</span><span class="position">（新入职）</span><br><span style="color:var(--text-dim);">"需要主管带"</span></div>
   </div>
-</div>
 
-<!-- 沟通/信息混乱 -->
-<div class="concern-card" data-cat="沟通/信息混乱">
-  <div class="cat cat-p">🟣 沟通渠道 / 信息混乱</div>
-  <div class="concern-item" data-dept="加拿大HR组">
-    <span class="who">@Amber Huang</span><span class="dept">[加拿大HR组 · 招聘专员]</span>
-    <span class="text">"群过多，沟通效果不好，且感觉混乱；系统里啥都有，可需要帮助的时候不知道怎么办，该找谁，真正的问题找到了人也有同样的无力感"</span>
+  <!-- 沟通/信息混乱 -->
+  <div class="concern-card" data-dept="GUS 人力资源部">
+    <div class="cat" style="color:var(--pink);">🟣 沟通渠道 / 信息混乱（1人）</div>
+    <div class="item"><span class="who">Amber Huang</span><span class="org-tag">GUS 人力资源部</span><span class="position">招聘专员</span><br><span style="color:var(--text-dim);">"群过多，沟通效果不好，且感觉混乱; 貌似系统里啥都有，可需要帮助的时候不知道怎么办，该找谁，真正的问题找到了人也有同样的无力感"</span></div>
   </div>
-</div>
 
-<!-- 业务理解待确认 -->
-<div class="concern-card" data-cat="业务理解待确认">
-  <div class="cat cat-p">🔵 业务理解待确认</div>
-  <div class="concern-item" data-dept="分拣组">
-    <span class="who">@Sandy Ji</span><span class="dept">[分拣组 · 分拣员]</span>
-    <span class="text">"整個分揀的系統裡面，應該是時效最為重要吧……請問這個對嗎？" — 对核心工作目标缺乏明确确认</span>
+  <!-- 业务理解/动机 -->
+  <div class="concern-card" data-dept="WE 美西大区,Ground项目部">
+    <div class="cat" style="color:var(--cyan);">🔵 业务理解 / 工作动机（2人）</div>
+    <div class="item"><span class="who">Sandy Ji</span><span class="org-tag">WE 美西大区</span><span class="position">分拣员</span><br><span style="color:var(--text-dim);">"整個分揀的系統裡面，應該是時效最為重要吧……請問這個對嗎？" — 对工作核心目标缺乏明确确认</span></div>
+    <div class="item"><span class="who">Eric Chen</span><span class="org-tag">Ground项目部</span><span class="position">站点培训生</span><br><span style="color:var(--text-dim);">"钱太少" — ⚠️ 薪酬不满，存在离职风险</span></div>
   </div>
-</div>
 
-<!-- 正向反馈/无困难 -->
-<div class="concern-card" data-cat="正向反馈" style="border-left:3px solid var(--green);">
-  <div class="cat cat-g">✅ 正向反馈 / 无特殊困难（11人）</div>
-  <div class="concern-item" data-dept="仓库租赁组">
-    <span class="who">@Mike Shih</span><span class="dept">[仓库租赁组]</span>
-    <span class="text">"虽然只有短短两个星期，但是已经感受到GOFO的活力朝气，团队合作的精神……加强学习密度，求新创新，火力全开！"</span>
-  </div>
-  <div style="font-size:11px;margin-top:6px;color:var(--text-dim)">
-    目前没有特殊困难：
-    <span class="who" data-dept="加拿大运营组">@Jason Luo</span><span class="dept">[加拿大运营组]</span> ·
-    <span class="who" data-dept="美西区HR组">@Emma Fu</span><span class="dept">[美西区HR组]</span> ·
-    <span class="who" data-dept="TEB01">@Jin Hui</span><span class="dept">[TEB01]</span> ·
-    <span class="who" data-dept="综办组">@Alex Zeng</span><span class="dept">[综办组]</span> ·
-    <span class="who" data-dept="MCO01">@Kenzie Deng</span><span class="dept">[MCO01]</span> ·
-    <span class="who" data-dept="分拣组">@Nina Zheng</span><span class="dept">[分拣组]</span> ·
-    <span class="who" data-dept="调度组">@Jerry Yu</span><span class="dept">[调度组]</span>
+  <!-- AI探索 -->
+  <div class="concern-card" data-dept="DO 数字运营部">
+    <div class="cat" style="color:var(--cyan);">🤖 技术探索（1人）</div>
+    <div class="item"><span class="who">Yifu Ye</span><span class="org-tag">DO 数字运营部</span><span class="position">大数据开发工程师</span><br><span style="color:var(--text-dim);">"ai探索中"</span></div>
   </div>
 </div>
 
 <!-- Export -->
 <div class="export-bar">
-  <button class="btn-export" onclick="exportToImage()">📷 导出为图片</button>
+  <button class="export-btn" onclick="exportImage()">📷 导出为图片</button>
 </div>
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script>
-function filterConcerns(){
-  var dept = document.getElementById('deptFilter').value;
-  var cards = document.querySelectorAll('.concern-card');
-  var total = 0;
-  cards.forEach(function(card){
-    var items = card.querySelectorAll('.concern-item[data-dept]');
-    var show = false;
-    if(dept === 'all'){
-      show = true;
-    } else {
-      items.forEach(function(item){
-        if(item.getAttribute('data-dept') === dept) show = true;
-      });
-      if(card.querySelector('.who[data-dept="'+dept+'"]')) show = true;
+// ── Bar chart: 各项达标率 ──
+new Chart(document.getElementById('chartBar'), {
+  type: 'bar',
+  data: {
+    labels: ['团队融入','成长地图','文档同步','1对1沟通','系统掌握','流程了解','HRBP联系'],
+    datasets: [{
+      label: '达标率 %',
+      data: [83.3, 88.9, 77.8, 72.2, 72.2, 72.2, 61.1],
+      backgroundColor: ['#0d904f','#0d904f','#3366ff','#e37400','#e37400','#e37400','#d93025'],
+      borderRadius: 4,
+      barThickness: 28
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { min: 0, max: 100, ticks: { callback: v => v+'%', font: { size: 10 } }, grid: { color: '#eee' } },
+      x: { ticks: { font: { size: 9 } }, grid: { display: false } }
     }
-    card.style.display = show ? '' : 'none';
-    if(show){
-      items.forEach(function(item){
-        if(dept === 'all' || item.getAttribute('data-dept') === dept){
-          item.classList.remove('hidden');
-          total++;
-        } else {
-          item.classList.add('hidden');
-        }
-      });
+  }
+});
+
+// ── Growth score distribution ──
+new Chart(document.getElementById('chartGrowth'), {
+  type: 'bar',
+  data: {
+    labels: ['1分','2分','3分','4分','5分','未答'],
+    datasets: [{
+      label: '人数',
+      data: [0, 1, 1, 1, 13, 2],
+      backgroundColor: ['#d93025','#d93025','#e37400','#f9ab00','#0d904f','#80868b'],
+      borderRadius: 4,
+      barThickness: 22
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { beginAtZero: true, ticks: { stepSize: 2, font: { size: 10 } }, grid: { color: '#eee' } },
+      x: { ticks: { font: { size: 9 } }, grid: { display: false } }
+    }
+  }
+});
+
+// ── Dept filter ──
+function filterConcerns() {
+  const val = document.getElementById('deptFilter').value;
+  const cards = document.querySelectorAll('#concernsContainer .concern-card');
+  let visible = 0;
+  cards.forEach(c => {
+    const depts = c.getAttribute('data-dept') || '';
+    if (!val || depts.includes(val)) {
+      c.style.display = '';
+      visible++;
+    } else {
+      c.style.display = 'none';
     }
   });
-  document.getElementById('filterCount').textContent = dept === 'all'
-    ? '（18人，含具体困惑/反馈内容）'
-    : '（筛选结果：' + total + '条）';
+  document.getElementById('concernCount').textContent = val ? `显示 ${visible} 条` : '';
 }
+document.getElementById('concernCount').textContent = '';
 
-function exportToImage(){
-  var btn = document.querySelector('.btn-export');
-  btn.textContent = '⏳ 生成中...';
+// ── Export image ──
+async function exportImage() {
+  const btn = document.querySelector('.export-btn');
+  btn.textContent = '⏳ 导出中...';
   btn.disabled = true;
-  html2canvas(document.querySelector('.wrap'), {
-    backgroundColor: '#1a1d23',
-    scale: 2,
-    useCORS: true
-  }).then(function(canvas){
-    var link = document.createElement('a');
+  try {
+    const el = document.getElementById('report-root');
+    const canvas = await html2canvas(el, { scale: 2, useCORS: true, backgroundColor: '#f0f2f5', logging: false });
+    const link = document.createElement('a');
     link.download = '入职两周满意度调研分析报告.png';
     link.href = canvas.toDataURL('image/png');
     link.click();
-    btn.textContent = '📷 导出为图片';
-    btn.disabled = false;
-  }).catch(function(err){
-    alert('导出失败：' + err.message);
-    btn.textContent = '📷 导出为图片';
-    btn.disabled = false;
-  });
+  } catch (e) {
+    alert('导出失败：' + e.message);
+  }
+  btn.textContent = '📷 导出为图片';
+  btn.disabled = false;
 }
 </script>
 </body>
