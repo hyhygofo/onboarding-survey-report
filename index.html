@@ -2,415 +2,332 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>新人入职满意度调研报告</title>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <style>
-:root{
-  --bg:#f0f2f5;--card-bg:#fff;--card-border:#e0e0e0;--text:#1a1a2e;--text-dim:#666;--text-light:#999;
-  --red:#d93025;--orange:#e37400;--yellow:#f9ab00;--green:#0d904f;--blue:#3366ff;--purple:#9c27b0;
-  --pink:#e91e63;--cyan:#00696b;--r:8px;--shadow:0 1px 3px rgba(0,0,0,.08);
-  --sidebar-w:160px;
-}
+:root{--bg:#f0f2f5;--cbg:#fff;--cb:#e0e0e0;--t:#1a1a2e;--td:#666;--tl:#999;
+--rd:#d93025;--or:#e37400;--ye:#f9ab00;--gr:#0d904f;--bl:#3366ff;--pu:#9c27b0;--pk:#e91e63;--cy:#00696b;
+--r:8px;--sh:0 1px 3px rgba(0,0,0,.08);--sw:160px;--tbg:#f5f7fa;}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);font-size:13px;line-height:1.5}
-.wrapper{display:flex;min-height:100vh}
-.sidebar{width:var(--sidebar-w);background:var(--card-bg);border-right:1px solid var(--card-border);padding:16px 0;position:fixed;top:0;left:0;height:100vh;z-index:100;display:flex;flex-direction:column;align-items:center;gap:8px}
-.sidebar .logo{font-size:14px;font-weight:700;text-align:center;padding:0 12px 16px;border-bottom:1px solid var(--card-border);width:100%;margin-bottom:8px;color:var(--text)}
-.toggle-btn{width:calc(100% - 24px);padding:12px 10px;border:2px solid var(--card-border);border-radius:var(--r);background:var(--card-bg);cursor:pointer;font-size:12px;font-weight:600;color:var(--text-dim);transition:all .2s;text-align:center;line-height:1.4}
-.toggle-btn:hover{border-color:var(--blue);color:var(--blue)}
-.toggle-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
-.toggle-btn .num{font-size:10px;font-weight:400;opacity:.7;margin-top:2px}
-.sidebar .meta{margin-top:auto;font-size:10px;color:var(--text-light);text-align:center;padding:8px}
-.main{margin-left:var(--sidebar-w);flex:1;padding:20px 24px;min-width:0}
-.section{display:none}
-.section.active{display:block}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--t);font-size:13px;line-height:1.5}
+.wrp{display:flex;min-height:100vh}
+.sb{width:var(--sw);background:var(--cbg);border-right:1px solid var(--cb);padding:16px 0;position:fixed;top:0;left:0;height:100vh;z-index:100;display:flex;flex-direction:column;align-items:center;gap:8px}
+.sb .logo{font-size:14px;font-weight:700;text-align:center;padding:0 12px 16px;border-bottom:1px solid var(--cb);width:100%;margin-bottom:8px;color:var(--t);line-height:1.5}
+.tb{width:calc(100% - 24px);padding:12px 10px;border:2px solid var(--cb);border-radius:var(--r);background:var(--cbg);cursor:pointer;font-size:12px;font-weight:600;color:var(--td);transition:all .2s;text-align:center;line-height:1.4}
+.tb:hover{border-color:var(--bl);color:var(--bl)}
+.tb.on{background:var(--bl);border-color:var(--bl);color:#fff}
+.tb .n{font-size:10px;font-weight:400;opacity:.7;margin-top:2px}
+.sb .meta{margin-top:auto;font-size:10px;color:var(--tl);text-align:center;padding:8px}
+.mn{margin-left:var(--sw);flex:1;padding:20px 24px;min-width:0}
+.sec{display:none}
+.sec.on{display:block}
 h1{font-size:18px;font-weight:700;margin-bottom:4px}
-h2{font-size:14px;font-weight:700;margin:18px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--blue)}
-.subtitle{font-size:11px;color:var(--text-dim);margin-bottom:14px}
-.kpi-row{display:flex;gap:7px;margin-bottom:16px;flex-wrap:nowrap}
-.kpi{flex:1;min-width:0;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--r);padding:8px 8px;box-shadow:var(--shadow);text-align:center}
-.kpi .l{font-size:9.5px;color:var(--text-dim);letter-spacing:.2px;margin-bottom:3px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.kpi .v{font-size:18px;font-weight:700;line-height:1.1}
-.kpi .s{font-size:9px;color:var(--text-dim);margin-top:2px}
-.kpi.k-red{border-top:3px solid var(--red)}
-.kpi.k-orange{border-top:3px solid var(--orange)}
-.kpi.k-green{border-top:3px solid var(--green)}
-.kpi.k-blue{border-top:3px solid var(--blue)}
-.v-red{color:var(--red)}.v-orange{color:var(--orange)}.v-green{color:var(--green)}.v-blue{color:var(--blue)}
-.tbl-wrap{overflow-x:auto;margin-bottom:16px}
-table{width:100%;border-collapse:collapse;font-size:10.5px;background:var(--card-bg);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+h2{font-size:14px;font-weight:700;margin:18px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--bl)}
+.st{font-size:11px;color:var(--td);margin-bottom:14px}
+.kpir{display:flex;gap:7px;margin-bottom:16px;flex-wrap:nowrap}
+.kp{flex:1;min-width:0;background:var(--cbg);border:1px solid var(--cb);border-radius:var(--r);padding:8px 8px;box-shadow:var(--sh);text-align:center}
+.kp .l{font-size:9.5px;color:var(--td);letter-spacing:.2px;margin-bottom:3px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kp .v{font-size:18px;font-weight:700;line-height:1.1}
+.kp .s{font-size:9px;color:var(--td);margin-top:2px}
+.kp.kr{border-top:3px solid var(--rd)}.kp.ko{border-top:3px solid var(--or)}.kp.kg{border-top:3px solid var(--gr)}.kp.kb{border-top:3px solid var(--bl)}
+.vr{color:var(--rd)}.vo{color:var(--or)}.vg{color:var(--gr)}.vb{color:var(--bl)}
+.tw{overflow-x:auto;margin-bottom:16px}
+table{width:100%;border-collapse:collapse;font-size:10.5px;background:var(--cbg);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
 th,td{padding:5px 6px;text-align:center;border-bottom:1px solid #eee;white-space:nowrap}
-th{background:#f5f7fa;font-weight:600;color:var(--text-dim);font-size:10px;position:sticky;top:0}
+th{background:var(--tbg);font-weight:600;color:var(--td);font-size:10px;position:sticky;top:0}
 td:first-child,th:first-child{text-align:left;font-weight:600;padding-left:10px}
 tr:hover{background:#f9fafb}
-.hi-ok{color:var(--green);font-weight:600}
-.hi-mid{color:var(--orange);font-weight:600}
-.hi-low{color:var(--red);font-weight:600}
-.row-risk{background:#fce8e6}
-.row-warn{background:#fef7e0}
-.risk-badge{display:inline-block;padding:1px 6px;border-radius:10px;font-size:9px;font-weight:600}
-.risk-r{background:#fce8e6;color:var(--red)}
-.risk-y{background:#fef7e0;color:var(--orange)}
-.risk-g{background:#e6f4ea;color:var(--green)}
-.filter-bar{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
-.filter-bar label{font-size:11px;font-weight:600;color:var(--text-dim)}
-.filter-bar select{padding:4px 8px;border:1px solid var(--card-border);border-radius:4px;font-size:11px;background:var(--card-bg);color:var(--text);cursor:pointer}
-.filter-bar .count{font-size:10px;color:var(--text-dim);margin-left:auto}
-.concern-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
-.concern-card{background:var(--card-bg);border:1px solid var(--card-border);border-left:3px solid var(--blue);border-radius:var(--r);padding:10px 12px;box-shadow:var(--shadow)}
-.concern-card .cat{font-size:11px;font-weight:700;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #eee}
-.concern-card .item{padding:4px 0;border-bottom:1px dashed #eee;font-size:10.5px;line-height:1.5}
-.concern-card .item:last-child{border-bottom:none}
-.concern-card .who{font-weight:600;color:var(--text)}
-.concern-card .org-tag{display:inline-block;background:#e8eaed;border-radius:3px;padding:0 4px;font-size:9px;color:var(--text-dim);margin:0 2px}
-.concern-card .text{color:var(--text-dim);display:block;margin-top:2px;font-size:10px}
-.concern-card.cat-red{border-left-color:var(--red)}
-.concern-card.cat-orange{border-left-color:var(--orange)}
-.concern-card.cat-yellow{border-left-color:var(--yellow)}
-.concern-card.cat-green{border-left-color:var(--green)}
-.concern-card.cat-purple{border-left-color:var(--purple)}
-.concern-card.cat-pink{border-left-color:var(--pink)}
-.concern-card.cat-cyan{border-left-color:var(--cyan)}
-.concern-card.cat-blue{border-left-color:var(--blue)}
-@media(max-width:900px){.concern-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.concern-grid{grid-template-columns:1fr}.kpi-row{flex-wrap:wrap}.kpi{min-width:45%}}
-.export-bar{text-align:center;padding:16px 0;border-top:1px solid var(--card-border);margin-top:20px}
-.export-btn{padding:8px 24px;border:none;border-radius:var(--r);background:var(--blue);color:#fff;font-size:13px;font-weight:600;cursor:pointer;box-shadow:var(--shadow);transition:all .2s}
-.export-btn:hover{opacity:.9;transform:translateY(-1px)}
-.export-btn:disabled{opacity:.5;cursor:wait}
-</style>
-</head>
+.hi-ok{color:var(--gr);font-weight:600}.hi-low{color:var(--rd);font-weight:600}
+.r-risk{background:#fce8e6}.r-warn{background:#fef7e0}
+.rb{display:inline-block;padding:1px 6px;border-radius:10px;font-size:9px;font-weight:600}
+.rb-r{background:#fce8e6;color:var(--rd)}.rb-y{background:#fef7e0;color:var(--or)}.rb-g{background:#e6f4ea;color:var(--gr)}
+.fb{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.fb label{font-size:11px;font-weight:600;color:var(--td)}
+.fb select{padding:4px 8px;border:1px solid var(--cb);border-radius:4px;font-size:11px;background:var(--cbg);color:var(--t);cursor:pointer}
+.fb .cnt{font-size:10px;color:var(--td);margin-left:auto}
+.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.cc{background:var(--cbg);border:1px solid var(--cb);border-left:3px solid var(--bl);border-radius:var(--r);padding:10px 12px;box-shadow:var(--sh)}
+.cc .cat{font-size:11px;font-weight:700;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #eee}
+.cc .it{padding:4px 0;border-bottom:1px dashed #eee;font-size:10.5px;line-height:1.5}
+.cc .it:last-child{border-bottom:none}
+.cc .who{font-weight:600;color:var(--t)}
+.cc .ot{display:inline-block;background:#e8eaed;border-radius:3px;padding:0 4px;font-size:9px;color:var(--td);margin:0 2px}
+.cc .tx{color:var(--td);display:block;margin-top:2px;font-size:10px}
+.cc.br{border-left-color:var(--rd)}.cc.bo{border-left-color:var(--or)}.cc.bi{border-left-color:var(--ye)}.cc.bg{border-left-color:var(--gr)}
+.cc.bp{border-left-color:var(--pu)}.cc.bk{border-left-color:var(--pk)}.cc.bc{border-left-color:var(--cy)}.cc.bb{border-left-color:var(--bl)}
+@media(max-width:900px){.cg{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.cg{grid-template-columns:1fr}.kpir{flex-wrap:wrap}.kp{min-width:45%}}
+.exb{text-align:center;padding:16px 0;border-top:1px solid var(--cb);margin-top:20px}
+.exb button{padding:8px 24px;border:none;border-radius:var(--r);background:var(--bl);color:#fff;font-size:13px;font-weight:600;cursor:pointer;box-shadow:var(--sh);transition:all .2s}
+.exb button:hover{opacity:.9;transform:translateY(-1px)}
+.exb button:disabled{opacity:.5;cursor:wait}
+</style></head>
 <body>
-<div class="wrapper">
-  <div class="sidebar">
-    <div class="logo">新人入职满意度<br>调研报告</div>
-    <button class="toggle-btn active" onclick="switchSection('day3')">
-      第一站·启程<br>入职第3天
-      <div class="num">N=15</div>
-    </button>
-    <button class="toggle-btn" onclick="switchSection('twoweek')">
-      同行·两周记<br>入职两周
-      <div class="num">N=39</div>
-    </button>
-    <div class="meta">数据截止<br>2026-07-09</div>
-  </div>
-  <div class="main" id="reportContent">
-    <div class="section active" id="sec-day3">
-      <h1>「第一站·启程」入职第3天小问卷</h1>
-      <p class="subtitle">调研时间：入职第1~3天 | 有效样本：15人 | 维度：物资准备、信息指引、接待引导、上级见面、整体满意度</p>
-      <div class="kpi-row">
-        <div class="kpi k-blue"><div class="l">📋 指引信息清晰率</div><div class="v v-blue">86.7%</div><div class="s">13/15人清晰明确</div></div>
-        <div class="kpi k-green"><div class="l">⭐ 整体满意度</div><div class="v v-green">4.6</div><div class="s">均分/5，15人有效</div></div>
-        <div class="kpi k-blue"><div class="l">📦 办公设备就绪率</div><div class="v v-blue">80.0%</div><div class="s">12/15人全部就绪</div></div>
-        <div class="kpi k-blue"><div class="l">🤝 接待引导率</div><div class="v v-blue">80.0%</div><div class="s">12/15人全程引导</div></div>
-        <div class="kpi k-blue"><div class="l">👋 上级见面率</div><div class="v v-blue">80.0%</div><div class="s">12/15人已见面</div></div>
-      </div>
-
-      <h2>各指标 × 部门分布</h2>
-      <p class="subtitle">口径：达标率% = 正向回答人数 ÷ 该组总人数 | 满意度为均分（满分5分）</p>
-      <div class="tbl-wrap"><table>
-        <thead><tr><th>部门</th><th>人数</th><th>指引信息</th><th>满意度</th><th>设备就绪</th><th>接待引导</th><th>上级见面</th><th>风险</th></tr></thead>
-        <tbody>
-          <tr class="row-risk"><td>操作组</td><td>2</td><td class="hi-low">50%</td><td>4.5</td><td class="hi-low">50%</td><td class="hi-low">50%</td><td class="hi-low">50%</td><td><span class="risk-badge risk-r">5项</span></td></tr>
-          <tr class="row-warn"><td>招聘支持组</td><td>2</td><td class="hi-low">50%</td><td>4.5</td><td class="hi-ok">100%</td><td class="hi-low">50%</td><td class="hi-low">50%</td><td><span class="risk-badge risk-r">4项</span></td></tr>
-          <tr class="row-warn"><td>CV441</td><td>1</td><td class="hi-ok">100%</td><td>4.0</td><td class="hi-low">0%</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td><span class="risk-badge risk-r">3项</span></td></tr>
-          <tr><td>EWR.G</td><td>1</td><td class="hi-ok">100%</td><td>4.0</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">2项</span></td></tr>
-          <tr><td>区域支持组</td><td>2</td><td class="hi-ok">100%</td><td>4.5</td><td class="hi-low">50%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">2项</span></td></tr>
-          <tr><td>DSP支持组</td><td>1</td><td class="hi-ok">100%</td><td>5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">1项</span></td></tr>
-          <tr><td>IAH.G</td><td>1</td><td class="hi-ok">100%</td><td>5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">1项</span></td></tr>
-          <tr><td>LAX01</td><td>1</td><td class="hi-ok">100%</td><td>5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">1项</span></td></tr>
-          <tr><td>SEA01</td><td>1</td><td class="hi-ok">100%</td><td>5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">1项</span></td></tr>
-          <tr><td>东北区HR组</td><td>1</td><td class="hi-ok">100%</td><td>4.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">1项</span></td></tr>
-          <tr><td>产品运营组</td><td>1</td><td class="hi-ok">100%</td><td>5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">1项</span></td></tr>
-          <tr><td>维保组</td><td>1</td><td class="hi-ok">100%</td><td>5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">1项</span></td></tr>
-        </tbody></table></div>
-
-      <h2>困惑内容归类</h2>
-      <div class="filter-bar">
-        <label>筛选部门：</label>
-        <select id="d3_deptFilter" onchange="filterConcerns('day3')">
-          <option value="">全部部门</option>
-          <option value="CV441">CV441</option>
-          <option value="DSP支持组">DSP支持组</option>
-          <option value="EWR.G">EWR.G</option>
-          <option value="IAH.G">IAH.G</option>
-          <option value="LAX01">LAX01</option>
-          <option value="SEA01">SEA01</option>
-          <option value="东北区HR组">东北区HR组</option>
-          <option value="产品运营组">产品运营组</option>
-          <option value="区域支持组">区域支持组</option>
-          <option value="招聘支持组">招聘支持组</option>
-          <option value="操作组">操作组</option>
-          <option value="维保组">维保组</option>
-        </select>
-        <label style="margin-left:8px;">困惑类型：</label>
-        <select id="d3_typeFilter" onchange="filterConcerns('day3')">
-          <option value="">全部类型</option>
-          <option value="入职承诺/岗位预期不符">入职承诺/岗位预期不符</option>
-          <option value="业务内容待熟悉">业务内容待熟悉</option>
-          <option value="无特殊困难/正面反馈">无特殊困难/正面反馈</option>
-        </select>
-        <span class="count" id="d3_concernCount"></span>
-      </div>
-      <div class="concern-grid" id="d3_concernsContainer">
-        <div class="concern-card cat-red" data-d3-dept="操作组" data-d3-type="入职承诺/岗位预期不符">
-          <div class="cat" style="color:var(--red);">🔴 入职承诺/岗位预期不符（1人）</div>
-          <div class="item"><span class="who">Aisha Tarrant</span><span class="org-tag">操作组</span><br><span class="text">"During onboarding, there was a lot of confusion that was ongoing about my actual employment. And as we were trying to get everything figure out, it ended up with us having issues about my work schedule.In the beginning, I was told that I would only be working from 9 to 5 and that I would not be working on the weekends. However, during my first three days of employment, they had informed me that I would have to find some way of working over the weekends. I do not mind having to do this. However, it was more so made a requirement versus some form of optional work, and it wasn't appreciated as I was told one thing when I was hired and then I was told another thing the moment that I got into the position. However, when I got here, Zizi stated that there was the manager position open and that we all were able to be able to get that position. So now I'm very confused as to what my offer is, as I stand. I was told that I would be a manager after 90 days."</span></div>
-        </div>
-        <div class="concern-card cat-orange" data-d3-dept="招聘支持组" data-d3-type="业务内容待熟悉">
-          <div class="cat" style="color:var(--orange);">🟡 业务内容待熟悉（1人）</div>
-          <div class="item"><span class="who">Yexing Zhong</span><span class="org-tag">招聘支持组</span><br><span class="text">"蛮多的，主要是工作上的内容"</span></div>
-        </div>
-        <div class="concern-card cat-green" data-d3-dept="CV441,DSP支持组,EWR.G,IAH.G,LAX01,SEA01,东北区HR组,产品运营组,区域支持组,招聘支持组,操作组,维保组" data-d3-type="无特殊困难/正面反馈">
-          <div class="cat" style="color:var(--green);">✅ 无特殊困难/正面反馈（13人）</div>
-          <div class="item"><span class="who">Chrice Xu</span><span class="org-tag">招聘支持组</span><br><span class="text">"无"</span></div>
-          <div class="item"><span class="who">Shura Wu</span><span class="org-tag">产品运营组</span><br><span class="text">"无"</span></div>
-          <div class="item"><span class="who">Shuxiang Wang</span><span class="org-tag">DSP支持组</span><br><span class="text">"无"</span></div>
-          <div class="item"><span class="who">Joyce Wang</span><span class="org-tag">区域支持组</span><br><span class="text">"目前一切都好"</span></div>
-          <div class="item"><span class="who">Lyn Liu</span><span class="org-tag">区域支持组</span><br><span class="text">"让自己更好的融入，产出相应的价值，努力"</span></div>
-          <div class="item"><span class="who">Peizhi Liu</span><span class="org-tag">维保组</span><br><span class="text">"无"</span></div>
-          <div class="item"><span class="who">Suraj</span><span class="org-tag">CV441</span><br><span class="text">"No"</span></div>
-          <div class="item"><span class="who">Alvin Vega</span><span class="org-tag">操作组</span><br><span class="text">"No.  During my first 3 days, I received clarification and assistance as needed."</span></div>
-          <div class="item"><span class="who">Jackson Ye</span><span class="org-tag">LAX01</span><br><span class="text">"无"</span></div>
-          <div class="item"><span class="who">Iris An</span><span class="org-tag">SEA01</span><br><span class="text">"没有"</span></div>
-          <div class="item"><span class="who">Sarah Gao</span><span class="org-tag">东北区HR组</span><br><span class="text">"n/a"</span></div>
-          <div class="item"><span class="who">Aurora Wu</span><span class="org-tag">IAH.G</span><br><span class="text">"无"</span></div>
-          <div class="item"><span class="who">Ivan</span><span class="org-tag">EWR.G</span><br><span class="text">"还挺好"</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="section" id="sec-twoweek">
-      <h1>「同行·两周记」入职两周融入反馈</h1>
-      <p class="subtitle">调研时间：入职第14天 | 有效样本：39人 | 维度：1对1沟通、文档同步、系统掌握、业务流程、团队融入、HRBP联系、成长地图</p>
-      <div class="kpi-row">
-        <div class="kpi k-blue"><div class="l">🤝 团队融入率</div><div class="v v-blue">87.2%</div><div class="s">34/39人感觉良好</div></div>
-        <div class="kpi k-green"><div class="l">🗺️ 成长地图均分</div><div class="v v-green">4.65</div><div class="s">37/39人有效(94.9%)</div></div>
-        <div class="kpi k-blue"><div class="l">📄 文档同步率</div><div class="v v-blue">84.6%</div><div class="s">33/39人已同步</div></div>
-        <div class="kpi k-blue"><div class="l">💬 1对1沟通率</div><div class="v v-blue">82.1%</div><div class="s">32/39人充分沟通</div></div>
-        <div class="kpi k-orange"><div class="l">🔧 系统掌握率</div><div class="v v-orange">74.4%</div><div class="s">29/39人已掌握</div></div>
-        <div class="kpi k-orange"><div class="l">📖 业务流程率</div><div class="v v-orange">71.8%</div><div class="s">28/39人清晰了解</div></div>
-        <div class="kpi k-orange"><div class="l">📞 HRBP联系率</div><div class="v v-orange">71.8%</div><div class="s">28/39人已联系</div></div>
-      </div>
-
-      <h2>各指标 × 部门分布</h2>
-      <p class="subtitle">口径：达标率% = 正向回答人数 ÷ 该组总人数 | 成长地图为均分（满分5分）</p>
-      <div class="tbl-wrap"><table>
-        <thead><tr><th>部门</th><th>人数</th><th>团队融入</th><th>成长地图</th><th>文档同步</th><th>1对1沟通</th><th>系统掌握</th><th>业务流程</th><th>HRBP联系</th><th>风险</th></tr></thead>
-        <tbody>
-          <tr class="row-risk"><td>YYZ01</td><td>1</td><td class="hi-low">0%</td><td class="hi-low">1.0</td><td class="hi-low">0%</td><td class="hi-low">0%</td><td class="hi-low">0%</td><td class="hi-low">0%</td><td class="hi-low">0%</td><td><span class="risk-badge risk-r">7项</span></td></tr>
-          <tr class="row-risk"><td>实施运营组</td><td>2</td><td class="hi-low">50%</td><td class="hi-low">3.5</td><td class="hi-low">50%</td><td class="hi-low">50%</td><td class="hi-low">50%</td><td class="hi-low">50%</td><td class="hi-low">50%</td><td><span class="risk-badge risk-r">7项</span></td></tr>
-          <tr class="row-risk"><td>分拣组</td><td>4</td><td class="hi-low">75%</td><td class="hi-ok">4.0</td><td class="hi-low">50%</td><td class="hi-ok">100%</td><td class="hi-low">50%</td><td class="hi-low">50%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-r">5项</span></td></tr>
-          <tr class="row-risk"><td>加拿大HR组</td><td>1</td><td class="hi-low">0%</td><td class="hi-low">0</td><td class="hi-low">0%</td><td class="hi-low">0%</td><td class="hi-low">0%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-r">5项</span></td></tr>
-          <tr class="row-warn"><td>美西区HR组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td class="hi-low">0%</td><td class="hi-low">0%</td><td><span class="risk-badge risk-r">4项</span></td></tr>
-          <tr class="row-warn"><td>KA客服组</td><td>6</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">83%</td><td class="hi-low">67%</td><td class="hi-low">50%</td><td class="hi-ok">83%</td><td><span class="risk-badge risk-r">3项</span></td></tr>
-          <tr class="row-warn"><td>加拿大运营组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-r">3项</span></td></tr>
-          <tr><td>BOS01</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">2项</span></td></tr>
-          <tr><td>CLT02</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td><span class="risk-badge risk-y">2项</span></td></tr>
-          <tr><td>OG 美东区</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td><span class="risk-badge risk-y">2项</span></td></tr>
-          <tr><td>OG 美南区</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">2项</span></td></tr>
-          <tr><td>TEB01</td><td>2</td><td class="hi-ok">100%</td><td class="hi-ok">4.5</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td><span class="risk-badge risk-y">2项</span></td></tr>
-          <tr><td>招聘支持组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">2项</span></td></tr>
-          <tr><td>调度组</td><td>5</td><td class="hi-ok">80%</td><td class="hi-ok">4.8</td><td class="hi-ok">80%</td><td class="hi-ok">80%</td><td class="hi-ok">80%</td><td class="hi-ok">80%</td><td class="hi-low">60%</td><td><span class="risk-badge risk-y">2项</span></td></tr>
-          <tr><td>财客质控研发组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td><span class="risk-badge risk-y">2项</span></td></tr>
-          <tr><td>DTW01</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">1项</span></td></tr>
-          <tr><td>MCO01</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">1项</span></td></tr>
-          <tr><td>OG 美西区</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">1项</span></td></tr>
-          <tr><td>TAL01</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">1项</span></td></tr>
-          <tr><td>仓库租赁组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">1项</span></td></tr>
-          <tr><td>前端研发组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">1项</span></td></tr>
-          <tr><td>异常响应组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">1项</span></td></tr>
-          <tr><td>站点实施组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">1项</span></td></tr>
-          <tr><td>综办组</td><td>2</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="risk-badge risk-y">1项</span></td></tr>
-        </tbody></table></div>
-
-      <h2>困惑内容归类</h2>
-      <div class="filter-bar">
-        <label>筛选部门：</label>
-        <select id="tw_deptFilter" onchange="filterConcerns('twoweek')">
-          <option value="">全部部门</option>
-          <option value="BOS01">BOS01</option>
-          <option value="CLT02">CLT02</option>
-          <option value="DTW01">DTW01</option>
-          <option value="KA客服组">KA客服组</option>
-          <option value="MCO01">MCO01</option>
-          <option value="OG 美东区">OG 美东区</option>
-          <option value="OG 美南区">OG 美南区</option>
-          <option value="OG 美西区">OG 美西区</option>
-          <option value="TAL01">TAL01</option>
-          <option value="TEB01">TEB01</option>
-          <option value="YYZ01">YYZ01</option>
-          <option value="仓库租赁组">仓库租赁组</option>
-          <option value="分拣组">分拣组</option>
-          <option value="前端研发组">前端研发组</option>
-          <option value="加拿大HR组">加拿大HR组</option>
-          <option value="加拿大运营组">加拿大运营组</option>
-          <option value="实施运营组">实施运营组</option>
-          <option value="异常响应组">异常响应组</option>
-          <option value="招聘支持组">招聘支持组</option>
-          <option value="站点实施组">站点实施组</option>
-          <option value="综办组">综办组</option>
-          <option value="美西区HR组">美西区HR组</option>
-          <option value="调度组">调度组</option>
-          <option value="财客质控研发组">财客质控研发组</option>
-        </select>
-        <label style="margin-left:8px;">困惑类型：</label>
-        <select id="tw_typeFilter" onchange="filterConcerns('twoweek')">
-          <option value="">全部类型</option>
-          <option value="考勤/人事制度">考勤/人事制度</option>
-          <option value="薪酬/离职风险">薪酬/离职风险</option>
-          <option value="流程/制度/对接不清">流程/制度/对接不清</option>
-          <option value="沟通渠道/信息混乱">沟通渠道/信息混乱</option>
-          <option value="业务技能提升/学习需求">业务技能提升/学习需求</option>
-          <option value="业务理解/确认">业务理解/确认</option>
-          <option value="技术探索">技术探索</option>
-          <option value="职业发展">职业发展</option>
-          <option value="无特殊困难/正面反馈">无特殊困难/正面反馈</option>
-        </select>
-        <span class="count" id="tw_concernCount"></span>
-      </div>
-      <div class="concern-grid" id="tw_concernsContainer">
-        <div class="concern-card cat-purple" data-tw-dept="KA客服组,招聘支持组" data-tw-type="考勤/人事制度">
-          <div class="cat" style="color:var(--purple);">📋 考勤/人事制度（2人）</div>
-          <div class="item"><span class="who">Xian Li</span><span class="org-tag">KA客服组</span><br><span class="text">"下个月可以签一个月半吗"</span></div>
-          <div class="item"><span class="who">Ivy Yang</span><span class="org-tag">招聘支持组</span><br><span class="text">"迟到补假怎么补才能不扣钱。早退了一分钟怎么办。谢谢"</span></div>
-        </div>
-        <div class="concern-card cat-cyan" data-tw-dept="OG 美东区" data-tw-type="薪酬/离职风险">
-          <div class="cat" style="color:var(--cyan);">🔵 薪酬/离职风险（1人）</div>
-          <div class="item"><span class="who">Eric Chen</span><span class="org-tag">OG 美东区</span><br><span class="text">"钱太少"</span></div>
-        </div>
-        <div class="concern-card cat-red" data-tw-dept="BOS01,CLT02,调度组" data-tw-type="流程/制度/对接不清">
-          <div class="cat" style="color:var(--red);">🔴 流程/制度/对接不清（3人）</div>
-          <div class="item"><span class="who">Eddy Yuam</span><span class="org-tag">调度组</span><br><span class="text">"流程繁杂"</span></div>
-          <div class="item"><span class="who">kathy</span><span class="org-tag">BOS01</span><br><span class="text">"熟悉流程"</span></div>
-          <div class="item"><span class="who">Christy Wu</span><span class="org-tag">CLT02</span><br><span class="text">"一些特殊情况的处理以及对应需要对接处理特殊情况的部门"</span></div>
-        </div>
-        <div class="concern-card cat-pink" data-tw-dept="加拿大HR组,调度组" data-tw-type="沟通渠道/信息混乱">
-          <div class="cat" style="color:var(--pink);">🟣 沟通渠道/信息混乱（2人）</div>
-          <div class="item"><span class="who">Amber Huang</span><span class="org-tag">加拿大HR组</span><br><span class="text">"群过多，沟通效果不好，且感觉混乱; 貌似系统里啥都有，可需要帮助的时候不知道怎么办，该找谁，真正的问题找到了人也有同样的无力感"</span></div>
-          <div class="item"><span class="who">Donny Wu</span><span class="org-tag">调度组</span><br><span class="text">"我希望多了解一下我的本职工作和人际管理，还有沟通交流一下我们的工作情况进展，方便更好的交接，我们有外国人在做小工但是他们基本是语言不通，所以耐心交流也是很重要。至少他们要知道我们给他们安排的什么工作，避免错误发生。 最重要的我还是希望多学习一些我部门的工作，以后希望给团队减轻负担。"</span></div>
-        </div>
-        <div class="concern-card cat-orange" data-tw-dept="KA客服组,OG 美南区,实施运营组,站点实施组" data-tw-type="业务技能提升/学习需求">
-          <div class="cat" style="color:var(--orange);">🟡 业务技能提升/学习需求（5人）</div>
-          <div class="item"><span class="who">Kevin Bao</span><span class="org-tag">OG 美南区</span><br><span class="text">"如何管理 dsp 并且与司机进行有效的沟通"</span></div>
-          <div class="item"><span class="who">Martin Li</span><span class="org-tag">实施运营组</span><br><span class="text">"需要主管带"</span></div>
-          <div class="item"><span class="who">Yashan Lin</span><span class="org-tag">KA客服组</span><br><span class="text">"目前处于刚入职阶段，多项工作内容仍在熟悉过程中。"</span></div>
-          <div class="item"><span class="who">Minghui Lin</span><span class="org-tag">KA客服组</span><br><span class="text">"刚开始工作，需要学习的东西比较多，要完全消化比较困难"</span></div>
-          <div class="item"><span class="who">Jimmy Zeng</span><span class="org-tag">站点实施组</span><br><span class="text">"需要去针对具体的工作计划及安排再做出提升"</span></div>
-        </div>
-        <div class="concern-card cat-cyan" data-tw-dept="分拣组" data-tw-type="业务理解/确认">
-          <div class="cat" style="color:var(--cyan);">🔵 业务理解/确认（1人）</div>
-          <div class="item"><span class="who">Sandy Ji</span><span class="org-tag">分拣组</span><br><span class="text">"整個分揀的系統裡面，應該是時效最為重要吧，我的工作裡面的很多注意的情況都為了保證時效，這是我最新的理解。請問這個對嗎？"</span></div>
-        </div>
-        <div class="concern-card cat-blue" data-tw-dept="财客质控研发组" data-tw-type="技术探索">
-          <div class="cat" style="color:var(--blue);">🤖 技术探索（1人）</div>
-          <div class="item"><span class="who">Yifu Ye</span><span class="org-tag">财客质控研发组</span><br><span class="text">"ai探索中"</span></div>
-        </div>
-        <div class="concern-card cat-blue" data-tw-dept="TEB01" data-tw-type="职业发展">
-          <div class="cat" style="color:var(--blue);">🤖 职业发展（1人）</div>
-          <div class="item"><span class="who">Jin Hui</span><span class="org-tag">TEB01</span><br><span class="text">"目前的工作中暂时没有特别困惑或难以适应的部分，团队都给予了我们新入职的员工很大的支持和帮助，让我能很快速的了解和掌握工作内容。
-
-相比短期工作上的困惑，我更希望了解公司对员工长期职业的发展和支持。例如，除了晋升为站长之外，是否有内部其他岗位的学习、轮岗或者调动的机会，以及公司是否会提供相关发展指导。感谢"</span></div>
-        </div>
-        <div class="concern-card cat-green" data-tw-dept="DTW01,KA客服组,MCO01,OG 美西区,TAL01,TEB01,YYZ01,仓库租赁组,分拣组,前端研发组,加拿大运营组,实施运营组,异常响应组,综办组,美西区HR组,调度组" data-tw-type="无特殊困难/正面反馈">
-          <div class="cat" style="color:var(--green);">✅ 无特殊困难/正面反馈（23人）</div>
-          <div class="item"><span class="who">Jin Hui</span><span class="org-tag">TEB01</span><br><span class="text">"暂时没有，目前都比较顺利"</span></div>
-          <div class="item"><span class="who">Yingxiang Guan</span><span class="org-tag">异常响应组</span><br><span class="text">"暂时无"</span></div>
-          <div class="item"><span class="who">Jiaxin Chen</span><span class="org-tag">KA客服组</span><br><span class="text">"暂无"</span></div>
-          <div class="item"><span class="who">Jerry Yu</span><span class="org-tag">调度组</span><br><span class="text">"🈚️"</span></div>
-          <div class="item"><span class="who">Shen Wei</span><span class="org-tag">KA客服组</span><br><span class="text">"没有"</span></div>
-          <div class="item"><span class="who">Jason Luo</span><span class="org-tag">加拿大运营组</span><br><span class="text">"目前没有"</span></div>
-          <div class="item"><span class="who">Alex Zeng</span><span class="org-tag">综办组</span><br><span class="text">"目前学习/被要求掌握的部分都已经掌握"</span></div>
-          <div class="item"><span class="who">Emma Fu</span><span class="org-tag">美西区HR组</span><br><span class="text">"非常好谢谢"</span></div>
-          <div class="item"><span class="who">Kenzie Deng</span><span class="org-tag">MCO01</span><br><span class="text">"暂无"</span></div>
-          <div class="item"><span class="who">Mike Shih</span><span class="org-tag">仓库租赁组</span><br><span class="text">"您好！ 谢谢有这个机会加入 GOFO 大家庭，实感荣幸！ 虽然只有短短的倆个星期，但是已经感受到 GOFO 的活力昭气，团队合作的精神。加强学习密度，求新创新，火力全开，达到公司领导制定的 Short-term, Mid-term, and Long-term 发展计划和目标。感谢！Mike"</span></div>
-          <div class="item"><span class="who">Nina Zheng</span><span class="org-tag">分拣组</span><br><span class="text">"目前没有发现，同事都很友好，都很乐意帮助我"</span></div>
-          <div class="item"><span class="who">Sandy Ji</span><span class="org-tag">分拣组</span><br><span class="text">"暫時沒有"</span></div>
-          <div class="item"><span class="who">Alex Bao</span><span class="org-tag">YYZ01</span><br><span class="text">"无"</span></div>
-          <div class="item"><span class="who">Yashan Lin</span><span class="org-tag">KA客服组</span><br><span class="text">"无"</span></div>
-          <div class="item"><span class="who">Tiffany Mccormick</span><span class="org-tag">分拣组</span><br><span class="text">"nothing confusing just the language barrier but it’s a process so I’m willing to learn and except criticism"</span></div>
-          <div class="item"><span class="who">Irene Yuan</span><span class="org-tag">TAL01</span><br><span class="text">"none"</span></div>
-          <div class="item"><span class="who">Zhihui Xu</span><span class="org-tag">前端研发组</span><br><span class="text">"无"</span></div>
-          <div class="item"><span class="who">Lynn Chen</span><span class="org-tag">调度组</span><br><span class="text">"一切都很好～"</span></div>
-          <div class="item"><span class="who">Jie Chen</span><span class="org-tag">调度组</span><br><span class="text">"同事都很好，已经帮助了我很多，没有什么需要帮助的了"</span></div>
-          <div class="item"><span class="who">Zhong Yu</span><span class="org-tag">综办组</span><br><span class="text">"目前暂无"</span></div>
-          <div class="item"><span class="who">Fay Liu</span><span class="org-tag">OG 美西区</span><br><span class="text">"没有，感觉一切都很好"</span></div>
-          <div class="item"><span class="who">Xin Zhao</span><span class="org-tag">实施运营组</span><br><span class="text">"无"</span></div>
-          <div class="item"><span class="who">Eugene Wooten</span><span class="org-tag">DTW01</span><br><span class="text">"it was a little co on finding my station but I understand it more now I had to learn everything so now I got a better understanding and something to improve I really can’t think of anything im Thankful to be apa of the team"</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Export -->
-    <div class="export-bar">
-      <button class="export-btn" id="exportBtn" onclick="exportImage()">📷 导出为图片</button>
-    </div>
-
-  </div>
+<div class="wrp">
+<div class="sb">
+<div class="logo">新人入职满意度<br>调研报告</div>
+<button class="tb on" onclick="sw('day3')">第一站·启程<br>入职第3天<div class="n">N=15</div></button>
+<button class="tb" onclick="sw('twoweek')">同行·两周记<br>入职两周<div class="n">N=39</div></button>
+<div class="meta">数据截止<br>2026-07-09</div>
 </div>
+<div class="mn" id="rpt">
+<div class="sec on" id="s-day3">
+<h1>「第一站·启程」入职第3天小问卷</h1>
+<p class="st">调研时间：入职第1~3天 | 有效样本：15人 | 维度：物资准备、信息指引、接待引导、上级见面、整体满意度</p>
+<div class="kpir">
+<div class="kp kblue"><div class="l">📋指引信息</div><div class="v vblue">86.7%</div><div class="s">13/15人清晰明确</div></div>
+<div class="kp kg"><div class="l">⭐满意度</div><div class="v vg">4.6</div><div class="s">均分/5，15人有效</div></div>
+<div class="kp kblue"><div class="l">📦设备就绪</div><div class="v vblue">80.0%</div><div class="s">12/15人全部就绪</div></div>
+<div class="kp kblue"><div class="l">🤝接待引导</div><div class="v vblue">80.0%</div><div class="s">12/15人全程引导</div></div>
+<div class="kp kblue"><div class="l">👋上级见面</div><div class="v vblue">80.0%</div><div class="s">12/15人已见面</div></div>
+</div>
+<h2>各指标 × 部门分布</h2>
+<p class="st">口径：达标率% = 正向回答人数 ÷ 该组总人数 | 满意度为均分（满分5分）</p>
+<div class="tw"><table>
+<thead><tr><th>部门</th><th>人数</th><th>指引信息</th><th>满意度</th><th>设备就绪</th><th>接待引导</th><th>上级见面</th><th>风险</th></tr></thead><tbody>
+<tr class="r-risk"><td>操作组</td><td>2</td><td class="hi-low">50%</td><td class="hi-ok">4.5</td><td class="hi-low">50%</td><td class="hi-low">50%</td><td class="hi-low">50%</td><td><span class="rb rb-r">5项</span></td></tr>
+<tr class="r-warn"><td>招聘支持组</td><td>2</td><td class="hi-low">50%</td><td class="hi-ok">4.5</td><td class="hi-ok">100%</td><td class="hi-low">50%</td><td class="hi-low">50%</td><td><span class="rb rb-r">4项</span></td></tr>
+<tr class="r-warn"><td>CV441</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">4.0</td><td class="hi-low">0%</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td><span class="rb rb-r">3项</span></td></tr>
+<tr><td>EWR.G</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">4.0</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">2项</span></td></tr>
+<tr><td>区域支持组</td><td>2</td><td class="hi-ok">100%</td><td class="hi-ok">4.5</td><td class="hi-low">50%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">2项</span></td></tr>
+<tr><td>DSP支持组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">1项</span></td></tr>
+<tr><td>IAH.G</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">1项</span></td></tr>
+<tr><td>LAX01</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">1项</span></td></tr>
+<tr><td>SEA01</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">1项</span></td></tr>
+<tr><td>东北区HR组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">4.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">1项</span></td></tr>
+<tr><td>产品运营组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">1项</span></td></tr>
+<tr><td>维保组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">1项</span></td></tr>
+</tbody></table></div>
+<h2>困惑内容归类</h2>
+<div class="fb"><label>筛选部门：</label>
+<select id="d3_df" onchange="fc('day3')"><option value="">全部部门</option>
+<option value="CV441">CV441</option>
+<option value="DSP支持组">DSP支持组</option>
+<option value="EWR.G">EWR.G</option>
+<option value="IAH.G">IAH.G</option>
+<option value="LAX01">LAX01</option>
+<option value="SEA01">SEA01</option>
+<option value="东北区HR组">东北区HR组</option>
+<option value="产品运营组">产品运营组</option>
+<option value="区域支持组">区域支持组</option>
+<option value="招聘支持组">招聘支持组</option>
+<option value="操作组">操作组</option>
+<option value="维保组">维保组</option>
+</select><label style="margin-left:8px">困惑类型：</label>
+<select id="d3_tf" onchange="fc('day3')"><option value="">全部类型</option>
+<option value="入职承诺/岗位预期不符">入职承诺/岗位预期不符</option>
+<option value="业务内容待熟悉">业务内容待熟悉</option>
+<option value="无特殊困难/正面反馈">无特殊困难/正面反馈</option>
+</select><span class="cnt" id="d3_cnt"></span></div>
+<div class="cg" id="d3_cc">
+<div class="cc br" data-d3-dept="操作组" data-d3-type="入职承诺/岗位预期不符">
+<div class="cat" style="color:var(--rel)">🔴 入职承诺/岗位预期不符（1人）</div>
+<div class="it"><span class="who">Aisha Tarrant</span><span class="ot">操作组</span><br><span class="tx">&ldquo;During onboarding, there was a lot of confusion that was ongoing about my actual employment. And as we were trying to get everything figure out, it ended up with us having issues about my work schedule.In the beginning, I was told that I would only be working from 9 to 5 and that I would not be working on the weekends. However, during my first three days of employment, they had informed me that I would have to find some way of working over the weekends. I do not mind having to do this. However, it was more so made a requirement versus some form of optional work, and it wasn't appreciated as I was told one thing when I was hired and then I was told another thing the moment that I got into the position. However, when I got here, Zizi stated that there was the manager position open and that we all were able to be able to get that position. So now I'm very confused as to what my offer is, as I stand. I was told that I would be a manager after 90 days.&rdquo;</span></div>
+</div>
+<div class="cc bo" data-d3-dept="招聘支持组" data-d3-type="业务内容待熟悉">
+<div class="cat" style="color:var(--orl)">🟡 业务内容待熟悉（1人）</div>
+<div class="it"><span class="who">Yexing Zhong</span><span class="ot">招聘支持组</span><br><span class="tx">&ldquo;蛮多的，主要是工作上的内容&rdquo;</span></div>
+</div>
+<div class="cc bg" data-d3-dept="CV441,DSP支持组,EWR.G,IAH.G,LAX01,SEA01,东北区HR组,产品运营组,区域支持组,招聘支持组,操作组,维保组" data-d3-type="无特殊困难/正面反馈">
+<div class="cat" style="color:var(--grl)">✅ 无特殊困难/正面反馈（13人）</div>
+<div class="it"><span class="who">Chrice Xu</span><span class="ot">招聘支持组</span><br><span class="tx">&ldquo;无&rdquo;</span></div>
+<div class="it"><span class="who">Shura Wu</span><span class="ot">产品运营组</span><br><span class="tx">&ldquo;无&rdquo;</span></div>
+<div class="it"><span class="who">Shuxiang Wang</span><span class="ot">DSP支持组</span><br><span class="tx">&ldquo;无&rdquo;</span></div>
+<div class="it"><span class="who">Joyce Wang</span><span class="ot">区域支持组</span><br><span class="tx">&ldquo;目前一切都好&rdquo;</span></div>
+<div class="it"><span class="who">Lyn Liu</span><span class="ot">区域支持组</span><br><span class="tx">&ldquo;让自己更好的融入，产出相应的价值，努力&rdquo;</span></div>
+<div class="it"><span class="who">Peizhi Liu</span><span class="ot">维保组</span><br><span class="tx">&ldquo;无&rdquo;</span></div>
+<div class="it"><span class="who">Suraj</span><span class="ot">CV441</span><br><span class="tx">&ldquo;No&rdquo;</span></div>
+<div class="it"><span class="who">Alvin Vega</span><span class="ot">操作组</span><br><span class="tx">&ldquo;No.  During my first 3 days, I received clarification and assistance as needed.&rdquo;</span></div>
+<div class="it"><span class="who">Jackson Ye</span><span class="ot">LAX01</span><br><span class="tx">&ldquo;无&rdquo;</span></div>
+<div class="it"><span class="who">Iris An</span><span class="ot">SEA01</span><br><span class="tx">&ldquo;没有&rdquo;</span></div>
+<div class="it"><span class="who">Sarah Gao</span><span class="ot">东北区HR组</span><br><span class="tx">&ldquo;n/a&rdquo;</span></div>
+<div class="it"><span class="who">Aurora Wu</span><span class="ot">IAH.G</span><br><span class="tx">&ldquo;无&rdquo;</span></div>
+<div class="it"><span class="who">Ivan</span><span class="ot">EWR.G</span><br><span class="tx">&ldquo;还挺好&rdquo;</span></div>
+</div>
+</div></div>
+<div class="sec" id="s-twoweek">
+<h1>「同行·两周记」入职两周融入反馈</h1>
+<p class="st">调研时间：入职第14天 | 有效样本：39人 | 维度：1对1沟通、文档同步、系统掌握、业务流程、团队融入、HRBP联系、成长地图</p>
+<div class="kpir">
+<div class="kp kblue"><div class="l">🤝团队融入</div><div class="v vblue">87.2%</div><div class="s">34/39人感觉良好</div></div>
+<div class="kp kg"><div class="l">🗺️成长地图</div><div class="v vg">4.65</div><div class="s">37/39人有效(94.9%)</div></div>
+<div class="kp kblue"><div class="l">📄文档同步</div><div class="v vblue">84.6%</div><div class="s">33/39人已同步</div></div>
+<div class="kp kblue"><div class="l">💬1对1沟通</div><div class="v vblue">82.1%</div><div class="s">32/39人充分沟通</div></div>
+<div class="kp korange"><div class="l">🔧系统掌握</div><div class="v vorange">74.4%</div><div class="s">29/39人已掌握</div></div>
+<div class="kp korange"><div class="l">📖业务流程</div><div class="v vorange">71.8%</div><div class="s">28/39人清晰了解</div></div>
+<div class="kp korange"><div class="l">📞HRBP联系</div><div class="v vorange">71.8%</div><div class="s">28/39人已联系</div></div>
+</div>
+<h2>各指标 × 部门分布</h2>
+<p class="st">口径：达标率% = 正向回答人数 ÷ 该组总人数 | 成长地图为均分（满分5分）</p>
+<div class="tw"><table>
+<thead><tr><th>部门</th><th>人数</th><th>团队融入</th><th>成长地图</th><th>文档同步</th><th>1对1沟通</th><th>系统掌握</th><th>业务流程</th><th>HRBP联系</th><th>风险</th></tr></thead><tbody>
+<tr class="r-risk"><td>YYZ01</td><td>1</td><td class="hi-low">0%</td><td class="hi-low">1.0</td><td class="hi-low">0%</td><td class="hi-low">0%</td><td class="hi-low">0%</td><td class="hi-low">0%</td><td class="hi-low">0%</td><td><span class="rb rb-r">7项</span></td></tr>
+<tr class="r-risk"><td>实施运营组</td><td>2</td><td class="hi-low">50%</td><td class="hi-low">3.5</td><td class="hi-low">50%</td><td class="hi-low">50%</td><td class="hi-low">50%</td><td class="hi-low">50%</td><td class="hi-low">50%</td><td><span class="rb rb-r">7项</span></td></tr>
+<tr class="r-risk"><td>分拣组</td><td>4</td><td class="hi-low">75%</td><td class="hi-ok">4.0</td><td class="hi-low">50%</td><td class="hi-ok">100%</td><td class="hi-low">50%</td><td class="hi-low">50%</td><td class="hi-ok">100%</td><td><span class="rb rb-r">5项</span></td></tr>
+<tr class="r-risk"><td>加拿大HR组</td><td>1</td><td class="hi-low">0%</td><td class="hi-low">0</td><td class="hi-low">0%</td><td class="hi-low">0%</td><td class="hi-low">0%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-r">5项</span></td></tr>
+<tr class="r-warn"><td>美西区HR组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td class="hi-low">0%</td><td class="hi-low">0%</td><td><span class="rb rb-r">4项</span></td></tr>
+<tr class="r-warn"><td>KA客服组</td><td>6</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">83%</td><td class="hi-low">67%</td><td class="hi-low">50%</td><td class="hi-ok">83%</td><td><span class="rb rb-r">3项</span></td></tr>
+<tr class="r-warn"><td>加拿大运营组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td class="hi-ok">100%</td><td><span class="rb rb-r">3项</span></td></tr>
+<tr><td>BOS01</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">2项</span></td></tr>
+<tr><td>CLT02</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td><span class="rb rb-y">2项</span></td></tr>
+<tr><td>OG 美东区</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td><span class="rb rb-y">2项</span></td></tr>
+<tr><td>OG 美南区</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">2项</span></td></tr>
+<tr><td>TEB01</td><td>2</td><td class="hi-ok">100%</td><td class="hi-ok">4.5</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td><span class="rb rb-y">2项</span></td></tr>
+<tr><td>招聘支持组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">2项</span></td></tr>
+<tr><td>调度组</td><td>5</td><td class="hi-ok">80%</td><td class="hi-ok">4.8</td><td class="hi-ok">80%</td><td class="hi-ok">80%</td><td class="hi-ok">80%</td><td class="hi-ok">80%</td><td class="hi-low">60%</td><td><span class="rb rb-y">2项</span></td></tr>
+<tr><td>财客质控研发组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-low">0%</td><td><span class="rb rb-y">2项</span></td></tr>
+<tr><td>DTW01</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">1项</span></td></tr>
+<tr><td>MCO01</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">1项</span></td></tr>
+<tr><td>OG 美西区</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">1项</span></td></tr>
+<tr><td>TAL01</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">1项</span></td></tr>
+<tr><td>仓库租赁组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">1项</span></td></tr>
+<tr><td>前端研发组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">1项</span></td></tr>
+<tr><td>异常响应组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">1项</span></td></tr>
+<tr><td>站点实施组</td><td>1</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">1项</span></td></tr>
+<tr><td>综办组</td><td>2</td><td class="hi-ok">100%</td><td class="hi-ok">5.0</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td class="hi-ok">100%</td><td><span class="rb rb-y">1项</span></td></tr>
+</tbody></table></div>
+<h2>困惑内容归类</h2>
+<div class="fb"><label>筛选部门：</label>
+<select id="tw_df" onchange="fc('twoweek')"><option value="">全部部门</option>
+<option value="BOS01">BOS01</option>
+<option value="CLT02">CLT02</option>
+<option value="DTW01">DTW01</option>
+<option value="KA客服组">KA客服组</option>
+<option value="MCO01">MCO01</option>
+<option value="OG 美东区">OG 美东区</option>
+<option value="OG 美南区">OG 美南区</option>
+<option value="OG 美西区">OG 美西区</option>
+<option value="TAL01">TAL01</option>
+<option value="TEB01">TEB01</option>
+<option value="YYZ01">YYZ01</option>
+<option value="仓库租赁组">仓库租赁组</option>
+<option value="分拣组">分拣组</option>
+<option value="前端研发组">前端研发组</option>
+<option value="加拿大HR组">加拿大HR组</option>
+<option value="加拿大运营组">加拿大运营组</option>
+<option value="实施运营组">实施运营组</option>
+<option value="异常响应组">异常响应组</option>
+<option value="招聘支持组">招聘支持组</option>
+<option value="站点实施组">站点实施组</option>
+<option value="综办组">综办组</option>
+<option value="美西区HR组">美西区HR组</option>
+<option value="调度组">调度组</option>
+<option value="财客质控研发组">财客质控研发组</option>
+</select><label style="margin-left:8px">困惑类型：</label>
+<select id="tw_tf" onchange="fc('twoweek')"><option value="">全部类型</option>
+<option value="考勤/人事制度">考勤/人事制度</option>
+<option value="薪酬/离职风险">薪酬/离职风险</option>
+<option value="流程/制度/对接不清">流程/制度/对接不清</option>
+<option value="沟通渠道/信息混乱">沟通渠道/信息混乱</option>
+<option value="业务技能提升/学习需求">业务技能提升/学习需求</option>
+<option value="业务理解/确认">业务理解/确认</option>
+<option value="技术探索">技术探索</option>
+<option value="职业发展">职业发展</option>
+<option value="无特殊困难/正面反馈">无特殊困难/正面反馈</option>
+</select><span class="cnt" id="tw_cnt"></span></div>
+<div class="cg" id="tw_cc">
+<div class="cc bp" data-tw-dept="KA客服组,招聘支持组" data-tw-type="考勤/人事制度">
+<div class="cat" style="color:var(--pul)">📋 考勤/人事制度（2人）</div>
+<div class="it"><span class="who">Ivy Yang</span><span class="ot">招聘支持组</span><br><span class="tx">&ldquo;迟到补假怎么补才能不扣钱。早退了一分钟怎么办。谢谢&rdquo;</span></div>
+<div class="it"><span class="who">Xian Li</span><span class="ot">KA客服组</span><br><span class="tx">&ldquo;下个月可以签一个月半吗&rdquo;</span></div>
+</div>
+<div class="cc bc" data-tw-dept="OG 美东区" data-tw-type="薪酬/离职风险">
+<div class="cat" style="color:var(--cyl)">🔵 薪酬/离职风险（1人）</div>
+<div class="it"><span class="who">Eric Chen</span><span class="ot">OG 美东区</span><br><span class="tx">&ldquo;钱太少&rdquo;</span></div>
+</div>
+<div class="cc br" data-tw-dept="BOS01,CLT02,调度组" data-tw-type="流程/制度/对接不清">
+<div class="cat" style="color:var(--rel)">🔴 流程/制度/对接不清（3人）</div>
+<div class="it"><span class="who">Christy Wu</span><span class="ot">CLT02</span><br><span class="tx">&ldquo;一些特殊情况的处理以及对应需要对接处理特殊情况的部门&rdquo;</span></div>
+<div class="it"><span class="who">Eddy Yuam</span><span class="ot">调度组</span><br><span class="tx">&ldquo;流程繁杂&rdquo;</span></div>
+<div class="it"><span class="who">kathy</span><span class="ot">BOS01</span><br><span class="tx">&ldquo;熟悉流程&rdquo;</span></div>
+</div>
+<div class="cc bp" data-tw-dept="加拿大HR组,调度组" data-tw-type="沟通渠道/信息混乱">
+<div class="cat" style="color:var(--pil)">🟣 沟通渠道/信息混乱（2人）</div>
+<div class="it"><span class="who">Amber Huang</span><span class="ot">加拿大HR组</span><br><span class="tx">&ldquo;群过多，沟通效果不好，且感觉混乱; 貌似系统里啥都有，可需要帮助的时候不知道怎么办，该找谁，真正的问题找到了人也有同样的无力感&rdquo;</span></div>
+<div class="it"><span class="who">Donny Wu</span><span class="ot">调度组</span><br><span class="tx">&ldquo;我希望多了解一下我的本职工作和人际管理，还有沟通交流一下我们的工作情况进展，方便更好的交接，我们有外国人在做小工但是他们基本是语言不通，所以耐心交流也是很重要。至少他们要知道我们给他们安排的什么工作，避免错误发生。 最重要的我还是希望多学习一些我部门的工作，以后希望给团队减轻负担。&rdquo;</span></div>
+</div>
+<div class="cc bo" data-tw-dept="KA客服组,OG 美南区,实施运营组,站点实施组" data-tw-type="业务技能提升/学习需求">
+<div class="cat" style="color:var(--orl)">🟡 业务技能提升/学习需求（5人）</div>
+<div class="it"><span class="who">Yashan Lin</span><span class="ot">KA客服组</span><br><span class="tx">&ldquo;目前处于刚入职阶段，多项工作内容仍在熟悉过程中。&rdquo;</span></div>
+<div class="it"><span class="who">Kevin Bao</span><span class="ot">OG 美南区</span><br><span class="tx">&ldquo;如何管理 dsp 并且与司机进行有效的沟通&rdquo;</span></div>
+<div class="it"><span class="who">Minghui Lin</span><span class="ot">KA客服组</span><br><span class="tx">&ldquo;刚开始工作，需要学习的东西比较多，要完全消化比较困难&rdquo;</span></div>
+<div class="it"><span class="who">Martin Li</span><span class="ot">实施运营组</span><br><span class="tx">&ldquo;需要主管带&rdquo;</span></div>
+<div class="it"><span class="who">Jimmy Zeng</span><span class="ot">站点实施组</span><br><span class="tx">&ldquo;需要去针对具体的工作计划及安排再做出提升&rdquo;</span></div>
+</div>
+<div class="cc bc" data-tw-dept="分拣组" data-tw-type="业务理解/确认">
+<div class="cat" style="color:var(--cyl)">🔵 业务理解/确认（1人）</div>
+<div class="it"><span class="who">Sandy Ji</span><span class="ot">分拣组</span><br><span class="tx">&ldquo;整個分揀的系統裡面，應該是時效最為重要吧，我的工作裡面的很多注意的情況都為了保證時效，這是我最新的理解。請問這個對嗎？&rdquo;</span></div>
+</div>
+<div class="cc bb" data-tw-dept="财客质控研发组" data-tw-type="技术探索">
+<div class="cat" style="color:var(--bll)">🤖 技术探索（1人）</div>
+<div class="it"><span class="who">Yifu Ye</span><span class="ot">财客质控研发组</span><br><span class="tx">&ldquo;ai探索中&rdquo;</span></div>
+</div>
+<div class="cc bb" data-tw-dept="TEB01" data-tw-type="职业发展">
+<div class="cat" style="color:var(--bll)">🤖 职业发展（1人）</div>
+<div class="it"><span class="who">Jin Hui</span><span class="ot">TEB01</span><br><span class="tx">&ldquo;目前的工作中暂时没有特别困惑或难以适应的部分，团队都给予了我们新入职的员工很大的支持和帮助，让我能很快速的了解和掌握工作内容。
 
+相比短期工作上的困惑，我更希望了解公司对员工长期职业的发展和支持。例如，除了晋升为站长之外，是否有内部其他岗位的学习、轮岗或者调动的机会，以及公司是否会提供相关发展指导。感谢&rdquo;</span></div>
+</div>
+<div class="cc bg" data-tw-dept="DTW01,KA客服组,MCO01,OG 美西区,TAL01,TEB01,YYZ01,仓库租赁组,分拣组,前端研发组,加拿大运营组,实施运营组,异常响应组,综办组,美西区HR组,调度组" data-tw-type="无特殊困难/正面反馈">
+<div class="cat" style="color:var(--grl)">✅ 无特殊困难/正面反馈（23人）</div>
+<div class="it"><span class="who">Jin Hui</span><span class="ot">TEB01</span><br><span class="tx">&ldquo;暂时没有，目前都比较顺利&rdquo;</span></div>
+<div class="it"><span class="who">Yingxiang Guan</span><span class="ot">异常响应组</span><br><span class="tx">&ldquo;暂时无&rdquo;</span></div>
+<div class="it"><span class="who">Jiaxin Chen</span><span class="ot">KA客服组</span><br><span class="tx">&ldquo;暂无&rdquo;</span></div>
+<div class="it"><span class="who">Jerry Yu</span><span class="ot">调度组</span><br><span class="tx">&ldquo;🈚️&rdquo;</span></div>
+<div class="it"><span class="who">Shen Wei</span><span class="ot">KA客服组</span><br><span class="tx">&ldquo;没有&rdquo;</span></div>
+<div class="it"><span class="who">Jason Luo</span><span class="ot">加拿大运营组</span><br><span class="tx">&ldquo;目前没有&rdquo;</span></div>
+<div class="it"><span class="who">Alex Zeng</span><span class="ot">综办组</span><br><span class="tx">&ldquo;目前学习/被要求掌握的部分都已经掌握&rdquo;</span></div>
+<div class="it"><span class="who">Emma Fu</span><span class="ot">美西区HR组</span><br><span class="tx">&ldquo;非常好谢谢&rdquo;</span></div>
+<div class="it"><span class="who">Kenzie Deng</span><span class="ot">MCO01</span><br><span class="tx">&ldquo;暂无&rdquo;</span></div>
+<div class="it"><span class="who">Mike Shih</span><span class="ot">仓库租赁组</span><br><span class="tx">&ldquo;您好！ 谢谢有这个机会加入 GOFO 大家庭，实感荣幸！ 虽然只有短短的倆个星期，但是已经感受到 GOFO 的活力昭气，团队合作的精神。加强学习密度，求新创新，火力全开，达到公司领导制定的 Short-term, Mid-term, and Long-term 发展计划和目标。感谢！Mike&rdquo;</span></div>
+<div class="it"><span class="who">Nina Zheng</span><span class="ot">分拣组</span><br><span class="tx">&ldquo;目前没有发现，同事都很友好，都很乐意帮助我&rdquo;</span></div>
+<div class="it"><span class="who">Sandy Ji</span><span class="ot">分拣组</span><br><span class="tx">&ldquo;暫時沒有&rdquo;</span></div>
+<div class="it"><span class="who">Alex Bao</span><span class="ot">YYZ01</span><br><span class="tx">&ldquo;无&rdquo;</span></div>
+<div class="it"><span class="who">Yashan Lin</span><span class="ot">KA客服组</span><br><span class="tx">&ldquo;无&rdquo;</span></div>
+<div class="it"><span class="who">Tiffany Mccormick</span><span class="ot">分拣组</span><br><span class="tx">&ldquo;nothing confusing just the language barrier but it’s a process so I’m willing to learn and except criticism&rdquo;</span></div>
+<div class="it"><span class="who">Irene Yuan</span><span class="ot">TAL01</span><br><span class="tx">&ldquo;none&rdquo;</span></div>
+<div class="it"><span class="who">Zhihui Xu</span><span class="ot">前端研发组</span><br><span class="tx">&ldquo;无&rdquo;</span></div>
+<div class="it"><span class="who">Lynn Chen</span><span class="ot">调度组</span><br><span class="tx">&ldquo;一切都很好～&rdquo;</span></div>
+<div class="it"><span class="who">Jie Chen</span><span class="ot">调度组</span><br><span class="tx">&ldquo;同事都很好，已经帮助了我很多，没有什么需要帮助的了&rdquo;</span></div>
+<div class="it"><span class="who">Zhong Yu</span><span class="ot">综办组</span><br><span class="tx">&ldquo;目前暂无&rdquo;</span></div>
+<div class="it"><span class="who">Fay Liu</span><span class="ot">OG 美西区</span><br><span class="tx">&ldquo;没有，感觉一切都很好&rdquo;</span></div>
+<div class="it"><span class="who">Xin Zhao</span><span class="ot">实施运营组</span><br><span class="tx">&ldquo;无&rdquo;</span></div>
+<div class="it"><span class="who">Eugene Wooten</span><span class="ot">DTW01</span><br><span class="tx">&ldquo;it was a little co on finding my station but I understand it more now I had to learn everything so now I got a better understanding and something to improve I really can’t think of anything im Thankful to be apa of the team&rdquo;</span></div>
+</div>
+</div></div>
+<div class="exb"><button id="ebtn" onclick="exp()">📷 导出为图片</button></div>
+</div></div>
 <script>
-function switchSection(name) {
-  document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  if (name === 'day3') {
-    document.querySelector('.toggle-btn:nth-child(2)').classList.add('active');
-    document.getElementById('sec-day3').classList.add('active');
-  } else {
-    document.querySelector('.toggle-btn:nth-child(3)').classList.add('active');
-    document.getElementById('sec-twoweek').classList.add('active');
-  }
+function sw(n){
+  document.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  if(n==='day3'){document.querySelector('.tb:nth-child(2)').classList.add('on');document.getElementById('s-day3').classList.add('on')}
+  else{document.querySelector('.tb:nth-child(3)').classList.add('on');document.getElementById('s-twoweek').classList.add('on')}
 }
-
-function filterConcerns(survey) {
-  var prefix = survey === 'day3' ? 'd3' : 'tw';
-  var deptVal = document.getElementById(prefix + '_deptFilter').value;
-  var typeVal = document.getElementById(prefix + '_typeFilter').value;
-  var container = document.getElementById(prefix + '_concernsContainer');
-  var attr = survey === 'day3' ? 'data-d3-dept' : 'data-tw-dept';
-  var attrType = survey === 'day3' ? 'data-d3-type' : 'data-tw-type';
-  var cards = container.querySelectorAll('.concern-card');
-  var visible = 0;
-  cards.forEach(function(c) {
-    var depts = c.getAttribute(attr) || '';
-    var types = c.getAttribute(attrType) || '';
-    var showDept = !deptVal || depts.indexOf(deptVal) >= 0;
-    var showType = !typeVal || types === typeVal;
-    if (showDept && showType) {
-      c.style.display = '';
-      visible++;
-    } else {
-      c.style.display = 'none';
-    }
+function fc(s){
+  var p=s==='day3'?'d3':'tw';
+  var dv=document.getElementById(p+'_df').value;
+  var tv=document.getElementById(p+'_tf').value;
+  var cn=document.getElementById(p+'_cc');
+  var ad=s==='day3'?'data-d3-dept':'data-tw-dept';
+  var at=s==='day3'?'data-d3-type':'data-tw-type';
+  var v=0;
+  cn.querySelectorAll('.cc').forEach(function(c){
+    var d=c.getAttribute(ad)||''; var t=c.getAttribute(at)||'';
+    var sd=!dv||d.indexOf(dv)>=0; var st=!tv||t===tv;
+    c.style.display=sd&&st?'':'none'; if(sd&&st)v++;
   });
-  var countEl = document.getElementById(prefix + '_concernCount');
-  countEl.textContent = deptVal || typeVal ? '显示 ' + visible + ' 条' : '';
+  document.getElementById(p+'_cnt').textContent=dv||tv?'显示 '+v+' 条':'';
 }
-
-function exportImage() {
-  var btn = document.getElementById('exportBtn');
-  btn.disabled = true;
-  btn.textContent = '正在生成...';
-  var activeSection = document.querySelector('.section.active');
-  var title = activeSection.querySelector('h1').textContent;
-  html2canvas(activeSection, {
-    scale: 2,
-    backgroundColor: '#f0f2f5',
-    useCORS: true,
-    logging: false
-  }).then(function(canvas) {
-    var link = document.createElement('a');
-    link.download = title + '.png';
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-    btn.disabled = false;
-    btn.textContent = '📷 导出为图片';
-  }).catch(function() {
-    btn.disabled = false;
-    btn.textContent = '📷 导出为图片';
-    alert('导出失败，请重试');
-  });
+function exp(){
+  var btn=document.getElementById('ebtn');btn.disabled=true;btn.textContent='正在生成...';
+  var ac=document.querySelector('.sec.on');
+  var t=ac.querySelector('h1').textContent;
+  html2canvas(ac,{scale:2,backgroundColor:'#f0f2f5',useCORS:true,logging:false}).then(function(c){
+    var l=document.createElement('a');l.download=t+'.png';l.href=c.toDataURL('image/png');l.click();
+    btn.disabled=false;btn.textContent='📷 导出为图片';
+  }).catch(function(){btn.disabled=false;btn.textContent='📷 导出为图片';alert('导出失败')});
 }
 </script>
-</body>
-</html>
+</body></html>
